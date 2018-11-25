@@ -10,7 +10,7 @@
     "url": "https://github.com/psrebniak/swagger-typescript-client-generator.git"
   },
   "scripts": {
-    "prebuild": "rimraf ./build",
+    "prebuild": "rimraf ./lib",
     "build": "tsc -p .",
     "test": "mocha -r ts-node/register src/**/*.test.ts",
     "lint": "tslint --project . --format verbose"
