@@ -1,0 +1,37 @@
+{
+  "name": "swagger-typescript-client-generator",
+  "version": "1.0.0",
+  "description": "Tool to convert swagger 2.0 file to typescript client",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/psrebniak/swagger-typescript-client-generator.git"
+  },
+  "scripts": {
+    "prebuild": "rimraf ./build",
+    "build": "tsc -p .",
+    "test": "mocha -r ts-node/register src/**/*.test.ts",
+    "lint": "tslint --project . --format verbose"
+  },
+  "dependencies": {
+    "yargs": "^12.0.5"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.5",
+    "@types/node": "8",
+    "@types/swagger-schema-official": "^2.0.14",
+    "@types/yargs": "^12.0.1",
+    "mocha": "^5.2.0",
+    "rimraf": "^2.6.2",
+    "swagger-schema-official": "latest",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.6"
+  },
+  "keywords": [
+    "swagger",
+    "typescript",
+    "client"
+  ]
+}
