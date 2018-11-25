@@ -1,0 +1,18 @@
+{
+  "extends": "tslint:recommended",
+  "rules": {
+    "semicolon": [
+      true,
+      "never"
+    ],
+    "interface-name": [
+      true,
+      "never-prefix"
+    ],
+    "object-literal-sort-keys": false,
+    "quotemark": [
+      true,
+      "single"
+    ]
+  }
+}
