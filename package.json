@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Tool to convert swagger 2.0 file to typescript client",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
