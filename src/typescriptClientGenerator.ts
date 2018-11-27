@@ -16,8 +16,8 @@ export class TypescriptClientGenerator {
 
   public generateModels(): string {
     return []
-      .concat(Object.entries(this.swagger.definitions))
-      .concat(Object.entries(this.swagger.responses))
+      .concat(Object.entries(this.swagger.definitions || {}))
+      .concat(Object.entries(this.swagger.responses || {}))
       .map(([name, def]) => {
         return this.converter.generateType(name, def)
       })
@@ -36,8 +36,8 @@ export class TypescriptClientGenerator {
 
   public generateImportsFromFile(importPath: string): string {
     const names = []
-      .concat(Object.keys(this.swagger.definitions))
-      .concat(Object.keys(this.swagger.responses))
+      .concat(Object.keys(this.swagger.definitions || {}))
+      .concat(Object.keys(this.swagger.responses || {}))
       .map((name) => this.converter.getNormalizer().normalize(name))
       .join(',\n  ')
 

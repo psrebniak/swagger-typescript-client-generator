@@ -2,20 +2,25 @@ import * as fs from 'fs'
 import * as yargs from 'yargs'
 import {TypescriptClientGenerator} from './typescriptClientGenerator'
 import {TypescriptConverter} from './typescriptConverter'
+
 const pkg = require('../package.json') // tslint:disable-line no-var-requires
 
 const swaggerReader = (file: string) => {
   return JSON.parse(fs.readFileSync(file, {encoding: 'UTF-8'}))
 }
 
-yargs
-  .alias('f', 'file')
-  .demandOption(['f'])
+const args = yargs
+  .option('file', {
+    type: 'string',
+    alias: 'f',
+    description: 'swagger file',
+    required: true,
+  })
   .option('allowVoidParameterTypes', {
     boolean: true,
     default: false,
+    alias: 'a',
   })
-  .alias('a', 'allowVoidParameterTypes')
   .command(
     'models',
     'generate models files',
@@ -63,3 +68,10 @@ yargs
       process.stdout.write(generator.generateSingleFile(args.name))
     })
   .version(pkg.version)
+  .demandCommand(1)
+  .argv
+
+if (process.env.DEBUG) {
+  // tslint:disable-next-line no-console
+  console.log(args)
+}

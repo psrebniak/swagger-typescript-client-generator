@@ -122,7 +122,7 @@ export class TypescriptConverter implements BaseConverter {
       args.push(TYPESCRIPT_TYPE_UNDEFINED)
     }
 
-    const responseTypes = Object.entries(operation.responses).map(([code, response]) => {
+    const responseTypes = Object.entries(operation.responses || {}).map(([code, response]) => {
       return this.generateTypeValue(response)
     }).join(' | ')
 
@@ -130,7 +130,7 @@ export class TypescriptConverter implements BaseConverter {
     output += `let path = '${path}'\n`
 
     output += pathParams.map((parameter) => {
-      return `path.replace('{${parameter.name}}', ${parameter.name}${PARAMETER_PATH_SUFFIX})\n`
+      return `path = path.replace('{${parameter.name}}', String(${parameter.name}${PARAMETER_PATH_SUFFIX}))\n`
     }).join('\n')
 
     output += `return this.requestFactory(${args.join(', ')}, this.configuration)\n`
@@ -216,8 +216,8 @@ export interface ApiResponse<T> extends Response {
 }
 export type RequestFactoryType = (path: string, query: any, body: any, formData: any, headers: any, configuration: any) => Promise<ApiResponse<any>>
 
-export class ${name} {
-  constructor(protected configuration: any, protected requestFactory: RequestFactoryType) {}
+export class ${name}<T extends {domain:string}> {
+  constructor(protected configuration: T, protected requestFactory: RequestFactoryType) {}
 `
     // tslint:enable max-line-length
 
