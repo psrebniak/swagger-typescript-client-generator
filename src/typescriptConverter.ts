@@ -39,13 +39,13 @@ export class TypescriptConverter implements BaseConverter {
   protected parametersJarFactory: ParametersJarFactory = new ParametersJarFactory(this.swagger)
   protected parametersArrayToSchemaConverter: ParametersArrayToSchemaConverter = new ParametersArrayToSchemaConverter()
 
-  public constructor(protected swagger: Spec, protected settings?: SwaggerToTypescriptConverterSettings) {
+  public constructor (protected swagger: Spec, protected settings?: SwaggerToTypescriptConverterSettings) {
     this.settings = Object.assign({}, {
       allowVoidParameters: true,
     }, settings || {})
   }
 
-  public generateParameterTypesForOperation(path: string, method: string, operation: Operation): string {
+  public generateParameterTypesForOperation (path: string, method: string, operation: Operation): string {
     const name = this.getNormalizer().normalize(`${method}-${path}`)
 
     const {
@@ -77,7 +77,7 @@ export class TypescriptConverter implements BaseConverter {
     return parameterTypes.join('\n')
   }
 
-  public generateOperation(path: string, method: string, operation: Operation) {
+  public generateOperation (path: string, method: string, operation: Operation) {
     const name = this.getNormalizer().normalize(`${method}-${path}`)
     const {
       pathParams,
@@ -139,11 +139,11 @@ export class TypescriptConverter implements BaseConverter {
     return output
   }
 
-  public generateType(name: string, definition: Schema): string {
+  public generateType (name: string, definition: Schema): string {
     return `export type ${this.getNormalizer().normalize(name)} = ${this.generateTypeValue(definition)}\n`
   }
 
-  public generateTypeValue(definition: Schema & { schema?: Schema }): string {
+  public generateTypeValue (definition: Schema & { schema?: Schema }): string {
 
     if (definition.schema) {
       return this.generateTypeValue(definition.schema)
@@ -206,7 +206,7 @@ export class TypescriptConverter implements BaseConverter {
     return TYPESCRIPT_TYPE_ANY
   }
 
-  public generateClient(name: string): string {
+  public generateClient (name: string): string {
 
     // tslint:disable max-line-length
     let output: string = `
@@ -232,15 +232,15 @@ export class ${name}<T extends {domain:string}> {
     return output
   }
 
-  public getNormalizer(): Normalizer {
+  public getNormalizer (): Normalizer {
     return this.normalizer
   }
 
-  public getParametersJarFactory(): ParametersJarFactory {
+  public getParametersJarFactory (): ParametersJarFactory {
     return this.parametersJarFactory
   }
 
-  public getParametersArrayToSchemaConverter(): ParametersArrayToSchemaConverter {
+  public getParametersArrayToSchemaConverter (): ParametersArrayToSchemaConverter {
     return this.parametersArrayToSchemaConverter
   }
 }

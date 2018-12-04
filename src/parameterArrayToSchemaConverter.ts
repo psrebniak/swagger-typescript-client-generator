@@ -1,7 +1,7 @@
 import {Parameter, Schema} from 'swagger-schema-official'
 
 export class ParametersArrayToSchemaConverter {
-  public convert(parameters: Parameter[]): Schema {
+  public convert (parameters: Parameter[]): Schema {
 
     if (!Array.isArray(parameters)) {
       throw new Error('invalid argument')

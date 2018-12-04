@@ -3,10 +3,10 @@ import {BaseConverter} from './baseConverter'
 
 export class TypescriptClientGenerator {
 
-  constructor(protected swagger: Spec, protected converter: BaseConverter) {
+  constructor (protected swagger: Spec, protected converter: BaseConverter) {
   }
 
-  public generateSingleFile(clientName: string): string {
+  public generateSingleFile (clientName: string): string {
     return [
       this.generateModels(),
       this.generateParameterTypesForOperations(),
@@ -14,7 +14,7 @@ export class TypescriptClientGenerator {
     ].join('\n')
   }
 
-  public generateModels(): string {
+  public generateModels (): string {
     return []
       .concat(Object.entries(this.swagger.definitions || {}))
       .concat(Object.entries(this.swagger.responses || {}))
@@ -24,7 +24,7 @@ export class TypescriptClientGenerator {
       .join('\n')
   }
 
-  public generateParameterTypesForOperations() {
+  public generateParameterTypesForOperations () {
     return Object.entries(this.swagger.paths)
       .map(([path, methods]) => {
         return Object.entries(methods)
@@ -34,7 +34,7 @@ export class TypescriptClientGenerator {
       }).join('\n')
   }
 
-  public generateImportsFromFile(importPath: string): string {
+  public generateImportsFromFile (importPath: string): string {
     const names = []
       .concat(Object.keys(this.swagger.definitions || {}))
       .concat(Object.keys(this.swagger.responses || {}))
@@ -44,7 +44,7 @@ export class TypescriptClientGenerator {
     return `import {\n  ${names} \n} from '${importPath}'`
   }
 
-  public generateClient(clientName: string): string {
+  public generateClient (clientName: string): string {
     return this.converter.generateClient(clientName)
   }
 

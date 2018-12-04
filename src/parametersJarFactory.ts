@@ -10,10 +10,10 @@ import {
 } from './swaggerTypes'
 
 export class ParametersJarFactory {
-  constructor(protected swagger: Spec) {
+  constructor (protected swagger: Spec) {
   }
 
-  public createFromOperation(operation: Operation): ParametersJar {
+  public createFromOperation (operation: Operation): ParametersJar {
     return {
       pathParams: this.getOperationParametersByType(operation, PARAMETER_TYPE_PATH),
       queryParams: this.getOperationParametersByType(operation, PARAMETER_TYPE_QUERY),
@@ -23,7 +23,7 @@ export class ParametersJarFactory {
     }
   }
 
-  protected getOperationParametersByType(operation: Operation, type: ParameterType): Parameter[] {
+  protected getOperationParametersByType (operation: Operation, type: ParameterType): Parameter[] {
 
     const parameters = this.mapParameters(operation)
     const authorization = this.mapAuthorization(operation)
@@ -32,7 +32,7 @@ export class ParametersJarFactory {
       .filter((parameter: Parameter) => parameter && parameter.in === type)
   }
 
-  protected mapParameters(operation: Operation) {
+  protected mapParameters (operation: Operation) {
     return (operation.parameters || [])
       .map((parameter: Parameter & { '$ref': string }) => {
         if (parameter.$ref) {
@@ -47,7 +47,7 @@ export class ParametersJarFactory {
       })
   }
 
-  protected mapAuthorization(operation: Operation) {
+  protected mapAuthorization (operation: Operation) {
     return (operation.security || [])
       .reduce((prev: string[], current): string[] => {
         return prev.concat(Object.keys(current))

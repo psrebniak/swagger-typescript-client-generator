@@ -18,6 +18,7 @@
   "exclude": [
     "node_modules",
     "lib",
-    "src/*.test.ts"
+    "src/*.test.ts",
+    "tmp"
   ]
 }
