@@ -133,7 +133,7 @@ export class TypescriptConverter implements BaseConverter {
       return `path = path.replace('{${parameter.name}}', String(${parameter.name}${PARAMETER_PATH_SUFFIX}))\n`
     }).join('\n')
 
-    output += `return this.requestFactory(${args.join(', ')}, this.configuration)\n`
+    output += `return this.requestFactory(${args.join(', ')}, '${method.toUpperCase()}', this.configuration)\n`
     output += '}\n'
 
     return output
@@ -214,7 +214,7 @@ export class TypescriptConverter implements BaseConverter {
 export interface ApiResponse<T> extends Response {
   json (): Promise<T>
 }
-export type RequestFactoryType = (path: string, query: any, body: any, formData: any, headers: any, configuration: any) => Promise<ApiResponse<any>>
+export type RequestFactoryType = (path: string, query: any, body: any, formData: any, headers: any, method: string, configuration: any) => Promise<ApiResponse<any>>
 
 export class ${name}<T extends {domain:string}> {
   constructor(protected configuration: T, protected requestFactory: RequestFactoryType) {}

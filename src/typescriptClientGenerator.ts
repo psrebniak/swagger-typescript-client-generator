@@ -41,7 +41,7 @@ export class TypescriptClientGenerator {
       .map((name) => this.converter.getNormalizer().normalize(name))
       .join(',\n  ')
 
-    return `import {\n  ${names} \n} from '${importPath}'`
+    return `import {\n  ${names} \n} from '${importPath}'\n`
   }
 
   public generateClient (clientName: string): string {

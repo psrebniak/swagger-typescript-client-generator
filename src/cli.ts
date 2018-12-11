@@ -52,6 +52,7 @@ const args = yargs
       }))
 
       process.stdout.write(generator.generateImportsFromFile(args.importModelsFrom))
+      process.stdout.write(generator.generateParameterTypesForOperations())
       process.stdout.write(generator.generateClient(args.name))
     },
   )
