@@ -58,19 +58,19 @@ export class TypescriptConverter implements BaseConverter {
     const parameterTypes: string[] = []
 
     if (this.settings.allowVoidParameters || queryParams.length > 0) {
-      const schema = this.getParametersArrayToSchemaConverter().convert(queryParams)
+      const schema = this.getParametersArrayToSchemaConverter().convertToObject(queryParams)
       parameterTypes.push(this.generateType(name + PARAMETERS_QUERY_SUFFIX, schema))
     }
     if (this.settings.allowVoidParameters || bodyParams.length > 0) {
-      const schema = this.getParametersArrayToSchemaConverter().convert(bodyParams)
+      const schema = this.getParametersArrayToSchemaConverter().convertToUnion(bodyParams)
       parameterTypes.push(this.generateType(name + PARAMETERS_BODY_SUFFIX, schema))
     }
     if (this.settings.allowVoidParameters || formDataParams.length > 0) {
-      const schema = this.getParametersArrayToSchemaConverter().convert(formDataParams)
+      const schema = this.getParametersArrayToSchemaConverter().convertToUnion(formDataParams)
       parameterTypes.push(this.generateType(name + PARAMETERS_FORM_DATA_SUFFIX, schema))
     }
     if (this.settings.allowVoidParameters || headerParams.length > 0) {
-      const schema = this.getParametersArrayToSchemaConverter().convert(headerParams)
+      const schema = this.getParametersArrayToSchemaConverter().convertToObject(headerParams)
       parameterTypes.push(this.generateType(name + PARAMETERS_HEADER_SUFFIX, schema))
     }
 
@@ -200,7 +200,7 @@ export class TypescriptConverter implements BaseConverter {
     }
 
     if (Array.isArray(definition.allOf) && definition.allOf.length > 0) {
-      return definition.allOf.map((this.generateTypeValue)).join(' & ') || TYPESCRIPT_TYPE_VOID
+      return definition.allOf.map(((schema) => this.generateTypeValue(schema))).join(' & ') || TYPESCRIPT_TYPE_VOID
     }
 
     return TYPESCRIPT_TYPE_ANY

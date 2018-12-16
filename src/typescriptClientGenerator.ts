@@ -37,7 +37,6 @@ export class TypescriptClientGenerator {
   public generateImportsFromFile (importPath: string): string {
     const names = []
       .concat(Object.keys(this.swagger.definitions || {}))
-      .concat(Object.keys(this.swagger.responses || {}))
       .map((name) => this.converter.getNormalizer().normalize(name))
       .join(',\n  ')
 

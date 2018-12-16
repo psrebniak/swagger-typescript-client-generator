@@ -1,7 +1,7 @@
 import {Parameter, Schema} from 'swagger-schema-official'
 
 export class ParametersArrayToSchemaConverter {
-  public convert (parameters: Parameter[]): Schema {
+  public convertToObject (parameters: Parameter[]): Schema {
 
     if (!Array.isArray(parameters)) {
       throw new Error('invalid argument')
@@ -20,5 +20,16 @@ export class ParametersArrayToSchemaConverter {
     })
 
     return schema
+  }
+
+  public convertToUnion (parameters: Parameter[]): Schema {
+
+    if (!Array.isArray(parameters)) {
+      throw new Error('invalid argument')
+    }
+
+    return {
+      allOf: parameters as any as Schema[]
+    }
   }
 }
