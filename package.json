@@ -19,19 +19,20 @@
     "lint": "tslint --project . --format verbose"
   },
   "dependencies": {
-    "yargs": "^12.0.5"
+    "yargs": "^13.2.2"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.5",
+    "@types/mocha": "^5.2.6",
     "@types/node": "8",
-    "@types/swagger-schema-official": "^2.0.14",
-    "@types/yargs": "^12.0.1",
-    "mocha": "^5.2.0",
-    "rimraf": "^2.6.2",
+    "@types/swagger-schema-official": "^2.0.15",
+    "@types/yargs": "^12.0.11",
+    "mocha": "^6.0.2",
+    "rimraf": "^2.6.3",
     "swagger-schema-official": "latest",
-    "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
-    "typescript": "^3.1.6"
+    "ts-node": "^8.0.3",
+    "tslint": "^5.15.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "typescript": "^3.4.1"
   },
   "keywords": [
     "swagger",

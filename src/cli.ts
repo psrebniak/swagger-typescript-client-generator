@@ -66,7 +66,7 @@ const args = yargs
         allowVoidParameters: args.allowVoidParameterTypes,
       }))
 
-      process.stdout.write(generator.generateSingleFile(args.name))
+      process.stdout.write(generator.generateSingleFile(String(args.name)))
     })
   .version(pkg.version)
   .demandCommand(1)
