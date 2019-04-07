@@ -19,11 +19,14 @@
     "lint": "tslint --project . --format verbose"
   },
   "dependencies": {
+    "@typescript-eslint/typescript-estree": "^1.6.0",
+    "prettier": "^1.16.4",
     "yargs": "^13.2.2"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.6",
     "@types/node": "8",
+    "@types/prettier": "^1.16.1",
     "@types/swagger-schema-official": "^2.0.15",
     "@types/yargs": "^12.0.11",
     "mocha": "^6.0.2",
