@@ -1,6 +1,6 @@
 {
   "name": "swagger-typescript-client-generator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Tool to convert swagger 2.0 file to typescript client",
   "main": "lib/index.js",
   "bin": "bin/index.js",
