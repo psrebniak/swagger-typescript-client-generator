@@ -1,19 +1,21 @@
-import * as fs from 'fs'
+import {Command} from 'commands/command'
+import {Spec} from 'swagger-schema-official'
+import {writerFactory} from './writer/writerFactory'
 import * as yargs from 'yargs'
-import * as prettier from 'prettier'
-import {TypescriptClientGenerator} from './typescriptClientGenerator'
-import {TypescriptConverter} from './typescriptConverter'
+import {bundleCommand, clientCommand, modelsCommand} from './commands'
+import {readerFactory} from './fileReader/readerFactory'
 
 const pkg = require('../package.json') // tslint:disable-line no-var-requires
 
-const swaggerReader = (file: string) => {
-  return JSON.parse(fs.readFileSync(file, {encoding: 'UTF-8'}))
-}
+const useCommand = (command: Command) =>
+  (args: yargs.Arguments<any>) => {
 
-const formatCode = (code: string) => {
-  return prettier.format(code, {
-    parser: 'typescript'
-  })
+  const reader = readerFactory(args)
+  const spec: Spec = reader(args)
+
+  const output = command(spec, args)
+  const writer = writerFactory(args)
+  writer(output, args)
 }
 
 const args = yargs
@@ -32,14 +34,7 @@ const args = yargs
     'models',
     'generate models files',
     (yargsModels) => yargsModels,
-    (args) => {
-      const swagger = swaggerReader(args.file)
-      const generator = new TypescriptClientGenerator(swagger, new TypescriptConverter(swagger, {
-        allowVoidParameters: args.allowVoidParameterTypes,
-      }))
-
-      process.stdout.write(formatCode(generator.generateModels()))
-    })
+    useCommand(modelsCommand))
   .command(
     'client <name> [importModelsFrom]',
     'generate client code',
@@ -52,29 +47,17 @@ const args = yargs
           default: './model',
           type: 'string',
         }),
-    (args) => {
-      const swagger = swaggerReader(args.file)
-      const generator = new TypescriptClientGenerator(swagger, new TypescriptConverter(swagger, {
-        allowVoidParameters: args.allowVoidParameterTypes,
-      }))
-
-      process.stdout.write(formatCode(generator.generateImportsFromFile(args.importModelsFrom)))
-      process.stdout.write(formatCode(generator.generateParameterTypesForOperations()))
-      process.stdout.write(formatCode(generator.generateClient(args.name)))
-    },
+    useCommand(clientCommand),
   )
   .command(
     'bundle <name>',
     'generate models and client',
-    (yarngsBundle) => yarngsBundle,
-    (args) => {
-      const swagger = swaggerReader(args.file)
-      const generator = new TypescriptClientGenerator(swagger, new TypescriptConverter(swagger, {
-        allowVoidParameters: args.allowVoidParameterTypes,
-      }))
-
-      process.stdout.write(formatCode(generator.generateSingleFile(String(args.name))))
-    })
+    (yarngsBundle) =>
+      yarngsBundle
+        .positional('name', {
+          type: 'string',
+        }),
+    useCommand(bundleCommand))
   .version(pkg.version)
   .demandCommand(1)
   .argv
