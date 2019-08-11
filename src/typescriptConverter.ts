@@ -216,7 +216,7 @@ export interface ApiResponse<T> extends Response {
 }
 export type RequestFactoryType = (path: string, query: any, body: any, formData: any, headers: any, method: string, configuration: any) => Promise<ApiResponse<any>>
 
-export class ${name}<T extends {domain:string}> {
+export class ${name}<T extends {} = {}> {
   constructor(protected configuration: T, protected requestFactory: RequestFactoryType) {}
 `
     // tslint:enable max-line-length
