@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "sourceMap": true,
+    "baseUrl": "src",
+    "outDir": "lib",
+    "lib": [
+      "es6",
+      "es7",
+      "es2017",
+      "es2017.object",
+      "dom"
+    ],
+    "declaration": true
+  },
+  "exclude": [
+    "node_modules",
+    "lib",
+    "src/*.test.ts",
+    "tmp"
+  ]
+}
