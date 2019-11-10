@@ -1,1 +1,1 @@
-export interface WriterOptions {}
+export declare type WriterOptions = any;

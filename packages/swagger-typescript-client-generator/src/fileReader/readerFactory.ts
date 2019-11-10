@@ -1,4 +1,4 @@
-import { FileReaderOptions } from "fileReader/options"
+import { FileReaderOptions } from "./options"
 import { jsonReader } from "./jsonReader"
 
 export const readerFactory = (options: FileReaderOptions) => {

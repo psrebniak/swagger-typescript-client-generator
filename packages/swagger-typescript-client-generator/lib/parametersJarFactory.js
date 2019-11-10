@@ -11,21 +11,22 @@ var ParametersJarFactory = /** @class */ (function () {
             queryParams: this.getOperationParametersByType(operation, swaggerTypes_1.PARAMETER_TYPE_QUERY),
             bodyParams: this.getOperationParametersByType(operation, swaggerTypes_1.PARAMETER_TYPE_BODY),
             formDataParams: this.getOperationParametersByType(operation, swaggerTypes_1.PARAMETER_TYPE_FORM_DATA),
-            headerParams: this.getOperationParametersByType(operation, swaggerTypes_1.PARAMETER_TYPE_HEADER),
+            headerParams: this.getOperationParametersByType(operation, swaggerTypes_1.PARAMETER_TYPE_HEADER)
         };
     };
     ParametersJarFactory.prototype.getOperationParametersByType = function (operation, type) {
         var parameters = this.mapParameters(operation);
         var authorization = this.mapAuthorization(operation);
-        return [].concat(parameters).concat(authorization)
+        return []
+            .concat(parameters)
+            .concat(authorization)
             .filter(function (parameter) { return parameter && parameter.in === type; });
     };
     ParametersJarFactory.prototype.mapParameters = function (operation) {
         var _this = this;
-        return (operation.parameters || [])
-            .map(function (parameter) {
+        return (operation.parameters || []).map(function (parameter) {
             if (parameter.$ref) {
-                var segments = parameter.$ref.split('/');
+                var segments = parameter.$ref.split("/");
                 var referred = _this.swagger.parameters[segments.length === 1 ? segments[0] : segments[2]];
                 if (!referred) {
                     throw new Error("cannot find reference " + parameter.$ref);

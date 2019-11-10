@@ -4,14 +4,14 @@ var parameterArrayToSchemaConverter_1 = require("./parameterArrayToSchemaConvert
 var parametersJarFactory_1 = require("./parametersJarFactory");
 var swaggerTypes_1 = require("./swaggerTypes");
 var typescriptNameNormalizer_1 = require("./typescriptNameNormalizer");
-exports.TYPESCRIPT_TYPE_UNDEFINED = 'undefined';
-exports.TYPESCRIPT_TYPE_VOID = 'void';
-exports.TYPESCRIPT_TYPE_ANY = 'any';
-var PARAMETER_PATH_SUFFIX = 'PathParameter';
-var PARAMETERS_QUERY_SUFFIX = 'QueryParameters';
-var PARAMETERS_BODY_SUFFIX = 'BodyParameters';
-var PARAMETERS_FORM_DATA_SUFFIX = 'FormDataParameters';
-var PARAMETERS_HEADER_SUFFIX = 'HeaderParameters';
+exports.TYPESCRIPT_TYPE_UNDEFINED = "undefined";
+exports.TYPESCRIPT_TYPE_VOID = "void";
+exports.TYPESCRIPT_TYPE_ANY = "any";
+var PARAMETER_PATH_SUFFIX = "PathParameter";
+var PARAMETERS_QUERY_SUFFIX = "QueryParameters";
+var PARAMETERS_BODY_SUFFIX = "BodyParameters";
+var PARAMETERS_FORM_DATA_SUFFIX = "FormDataParameters";
+var PARAMETERS_HEADER_SUFFIX = "HeaderParameters";
 var TypescriptConverter = /** @class */ (function () {
     function TypescriptConverter(swagger, settings) {
         this.swagger = swagger;
@@ -20,7 +20,7 @@ var TypescriptConverter = /** @class */ (function () {
         this.parametersJarFactory = new parametersJarFactory_1.ParametersJarFactory(this.swagger);
         this.parametersArrayToSchemaConverter = new parameterArrayToSchemaConverter_1.ParametersArrayToSchemaConverter();
         this.settings = Object.assign({}, {
-            allowVoidParameters: true,
+            allowVoidParameters: true
         }, settings || {});
     }
     TypescriptConverter.prototype.generateParameterTypesForOperation = function (path, method, operation) {
@@ -43,13 +43,13 @@ var TypescriptConverter = /** @class */ (function () {
             var schema = this.getParametersArrayToSchemaConverter().convertToObject(headerParams);
             parameterTypes.push(this.generateType(name + PARAMETERS_HEADER_SUFFIX, schema));
         }
-        return parameterTypes.join('\n');
+        return parameterTypes.join("\n");
     };
     TypescriptConverter.prototype.generateOperation = function (path, method, operation) {
         var _this = this;
         var name = this.getNormalizer().normalize(method + "-" + path);
         var _a = this.getParametersJarFactory().createFromOperation(operation), pathParams = _a.pathParams, queryParams = _a.queryParams, bodyParams = _a.bodyParams, formDataParams = _a.formDataParams, headerParams = _a.headerParams;
-        var output = '';
+        var output = "";
         var parameters = pathParams.map(function (parameter) {
             return "" + parameter.name + PARAMETER_PATH_SUFFIX + ": " + _this.generateTypeValue(parameter);
         });
@@ -82,17 +82,21 @@ var TypescriptConverter = /** @class */ (function () {
         else {
             args.push(exports.TYPESCRIPT_TYPE_UNDEFINED);
         }
-        var responseTypes = Object.entries(operation.responses || {}).map(function (_a) {
+        var responseTypes = Object.entries(operation.responses || {})
+            .map(function (_a) {
             var code = _a[0], response = _a[1];
             return _this.generateTypeValue(response);
-        }).join(' | ');
-        output += name + " (" + parameters.join(', ') + "): Promise<ApiResponse<" + responseTypes + ">> {\n";
+        })
+            .join(" | ");
+        output += name + " (" + parameters.join(", ") + "): Promise<ApiResponse<" + responseTypes + ">> {\n";
         output += "let path = '" + path + "'\n";
-        output += pathParams.map(function (parameter) {
+        output += pathParams
+            .map(function (parameter) {
             return "path = path.replace('{" + parameter.name + "}', String(" + parameter.name + PARAMETER_PATH_SUFFIX + "))\n";
-        }).join('\n');
-        output += "return this.requestFactory(" + args.join(', ') + ", '" + method.toUpperCase() + "', this.configuration)\n";
-        output += '}\n';
+        })
+            .join("\n");
+        output += "return this.requestFactory(" + args.join(", ") + ", '" + method.toUpperCase() + "', this.configuration)\n";
+        output += "}\n";
         return output;
     };
     TypescriptConverter.prototype.generateType = function (name, definition) {
@@ -104,11 +108,11 @@ var TypescriptConverter = /** @class */ (function () {
             return this.generateTypeValue(definition.schema);
         }
         if (definition.$ref) {
-            return this.getNormalizer().normalize(definition.$ref.substring(definition.$ref.lastIndexOf('/') + 1));
+            return this.getNormalizer().normalize(definition.$ref.substring(definition.$ref.lastIndexOf("/") + 1));
         }
         switch (definition.type) {
             case swaggerTypes_1.DEFINITION_TYPE_ENUM: {
-                return definition.enum.join(' | ');
+                return definition.enum.join(" | ");
             }
             case swaggerTypes_1.DEFINITION_TYPE_STRING:
             case swaggerTypes_1.DEFINITION_TYPE_NUMBER:
@@ -122,23 +126,22 @@ var TypescriptConverter = /** @class */ (function () {
                 return "Array<" + this.generateTypeValue(definition.items) + ">";
             }
             case swaggerTypes_1.DEFINITION_TYPE_OBJECT: {
-                var output = '';
+                var output = "";
                 var hasProperties = definition.properties && Object.keys(definition.properties).length > 0;
                 var hasAdditionalProperties = Boolean(definition.additionalProperties);
                 if (hasProperties) {
-                    output += '{\n';
-                    output += Object
-                        .entries(definition.properties)
+                    output += "{\n";
+                    output += Object.entries(definition.properties)
                         .map(function (_a) {
                         var name = _a[0], def = _a[1];
                         var isRequired = (definition.required || []).indexOf(name);
-                        return "'" + name + "'" + (isRequired ? '?' : '') + ": " + _this.generateTypeValue(def);
+                        return "'" + name + "'" + (isRequired ? "?" : "") + ": " + _this.generateTypeValue(def);
                     })
-                        .join('\n');
-                    output += '\n}';
+                        .join("\n");
+                    output += "\n}";
                 }
                 if (hasProperties && hasAdditionalProperties) {
-                    output += ' & ';
+                    output += " & ";
                 }
                 if (hasAdditionalProperties) {
                     output += this.generateTypeValue(definition.additionalProperties);
@@ -150,7 +153,9 @@ var TypescriptConverter = /** @class */ (function () {
             }
         }
         if (Array.isArray(definition.allOf) && definition.allOf.length > 0) {
-            return definition.allOf.map((function (schema) { return _this.generateTypeValue(schema); })).join(' & ') || exports.TYPESCRIPT_TYPE_VOID;
+            return (definition.allOf
+                .map(function (schema) { return _this.generateTypeValue(schema); })
+                .join(" & ") || exports.TYPESCRIPT_TYPE_VOID);
         }
         return exports.TYPESCRIPT_TYPE_ANY;
     };
@@ -159,15 +164,18 @@ var TypescriptConverter = /** @class */ (function () {
         // tslint:disable max-line-length
         var output = "\n\nexport interface ApiResponse<T> extends Response {\n  json (): Promise<T>\n}\nexport type RequestFactoryType = (path: string, query: any, body: any, formData: any, headers: any, method: string, configuration: any) => Promise<ApiResponse<any>>\n\nexport class " + name + "<T extends {} = {}> {\n  constructor(protected configuration: T, protected requestFactory: RequestFactoryType) {}\n";
         // tslint:enable max-line-length
-        output += Object.entries(this.swagger.paths).map(function (_a) {
+        output += Object.entries(this.swagger.paths)
+            .map(function (_a) {
             var path = _a[0], methods = _a[1];
             return Object.entries(methods)
                 .map(function (_a) {
                 var method = _a[0], operation = _a[1];
                 return _this.generateOperation(path, method, operation);
-            }).join('\n');
-        }).join('\n');
-        output += '}\n';
+            })
+                .join("\n");
+        })
+            .join("\n");
+        output += "}\n";
         return output;
     };
     TypescriptConverter.prototype.getNormalizer = function () {

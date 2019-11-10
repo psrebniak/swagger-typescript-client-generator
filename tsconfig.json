@@ -1,0 +1,11 @@
+{
+  "extends": "./base.tsconfig.json",
+  "references": [
+    { "path": "packages/swagger-typescript-client-generator-runtime" },
+    { "path": "packages/swagger-typescript-client-generator" }
+  ],
+  "files": [],
+  "compilerOptions": {
+    "declaration": false
+  }
+}

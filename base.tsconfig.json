@@ -10,5 +10,5 @@
     "lib": ["dom", "es6", "es7", "es2017"],
     "declaration": true
   },
-  "exclude": ["node_modules", "lib", "*.test.ts"]
+  "exclude": ["node_modules", "packages/**/*.test.ts", "packages/**/*.test.js"]
 }

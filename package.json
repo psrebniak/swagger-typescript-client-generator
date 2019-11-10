@@ -2,6 +2,9 @@
   "name": "swagger-typescript-client-generator",
   "private": true,
   "scripts": {
+    "clean": "rimraf ./packages/*/lib",
+    "prebuild": "yarn clean",
+    "build": "tsc --build --preserveWatchOutput",
     "format": "yarn run lint:prettier --write",
     "lint": "yarn lint:prettier && yarn run lint:tslint",
     "lint:tslint": "tslint -c 'packages/**/*.ts' --format verbose",

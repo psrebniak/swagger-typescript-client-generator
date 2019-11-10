@@ -1,1 +1,1 @@
-{"version":3,"file":"stdoutWriter.js","sourceRoot":"","sources":["../../src/writer/stdoutWriter.ts"],"names":[],"mappings":";;AAGa,QAAA,YAAY,GAAW,UAAC,OAAe,EAAE,OAAsB;IAC1E,OAAO,CAAC,MAAM,CAAC,KAAK,CAAC,OAAO,CAAC,CAAA;AAC/B,CAAC,CAAA"}
+{"version":3,"file":"stdoutWriter.js","sourceRoot":"","sources":["../../src/writer/stdoutWriter.ts"],"names":[],"mappings":";;AAGa,QAAA,YAAY,GAAW,UAClC,OAAe,EACf,OAAsB;IAEtB,OAAO,CAAC,MAAM,CAAC,KAAK,CAAC,OAAO,CAAC,CAAA;AAC/B,CAAC,CAAA"}

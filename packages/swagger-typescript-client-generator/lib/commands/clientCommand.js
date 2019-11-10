@@ -9,7 +9,7 @@ exports.clientCommand = function (swagger, options) {
     return [
         generator.generateImportsFromFile(options.importModelsFrom),
         generator.generateParameterTypesForOperations(),
-        generator.generateClient(options.name),
-    ].join('');
+        generator.generateClient(options.name)
+    ].join("");
 };
 //# sourceMappingURL=clientCommand.js.map

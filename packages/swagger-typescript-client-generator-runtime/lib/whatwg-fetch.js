@@ -10,10 +10,10 @@ exports.WhatWgFetchRequestFactory = function (baseUrl, options) { return functio
         method: method,
         headers: headersObject
     });
-    if (body && typeof body === 'string') {
+    if (body && typeof body === "string") {
         fetchOptions.body = body;
     }
-    else if (body && typeof body === 'object' && Object.keys(body).length > 0) {
+    else if (body && typeof body === "object" && Object.keys(body).length > 0) {
         fetchOptions.body = JSON.stringify(body);
     }
     else if (formData && Object.keys(formData).length > 0) {
@@ -26,10 +26,10 @@ exports.WhatWgFetchRequestFactory = function (baseUrl, options) { return functio
     var fullUrl = [
         baseUrl,
         path,
-        hasQuery ? (path.includes('?') ? '&' : '?') : '',
-        hasQuery ? querystring.stringify(query) : ''
-    ].join('');
-    var callback = typeof options.fetch === 'function' ? options.fetch : fetch;
+        hasQuery ? (path.includes("?") ? "&" : "?") : "",
+        hasQuery ? querystring.stringify(query) : ""
+    ].join("");
+    var callback = typeof options.fetch === "function" ? options.fetch : fetch;
     return callback(fullUrl, fetchOptions);
 }; };
 //# sourceMappingURL=whatwg-fetch.js.map

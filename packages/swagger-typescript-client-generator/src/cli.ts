@@ -1,4 +1,4 @@
-import { Command } from "commands/command"
+import { Command } from "./commands/command"
 import { Spec } from "swagger-schema-official"
 import { writerFactory } from "./writer/writerFactory"
 import * as yargs from "yargs"

@@ -1,5 +1,2 @@
-import { WriterOptions } from "./options"
-import { Writer } from "./writer"
-export declare const prettierWriterComposite: (
-  writer: Writer
-) => (content: string, options: WriterOptions) => void
+import { Writer } from "./writer";
+export declare const prettierWriterComposite: (writer: Writer) => (content: string, options: any) => void;
