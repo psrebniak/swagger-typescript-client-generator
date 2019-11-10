@@ -32,7 +32,7 @@
   },
   "config": {
     "commit-message-validator": {
-      "pattern": "^(M|merge .*)|((revert: )?(feat|fix|docs|style|refactor|perf|test|chore)(\\(\\#[0-9]+\\)): .{1,50})",
+      "pattern": "^(M|merge .*)|((revert: )?(feat|fix|docs|style|refactor|perf|test|chore)(\\(\\#[0-9]+\\))?: .{1,50})",
       "errorMessage": "Commit does not follow semantic messages - please check https://dev.to/maxpou/enhance-your-git-log-with-conventional-commits-3ea4"
     }
   },
