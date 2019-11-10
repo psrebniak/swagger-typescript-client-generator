@@ -1,0 +1,1 @@
+{"version":3,"file":"prettierWriterComposite.js","sourceRoot":"","sources":["../../src/writer/prettierWriterComposite.ts"],"names":[],"mappings":";;AAAA,mCAAoC;AAIvB,QAAA,uBAAuB,GAAG,UAAC,MAAc;IACpD,OAAA,UAAC,OAAe,EAAE,OAAsB;QACtC,OAAO,MAAM,CAAC,QAAQ,CAAC,MAAM,CAAC,OAAO,EAAE;YACrC,MAAM,EAAE,YAAY;SACrB,CAAC,EAAE,OAAO,CAAC,CAAA;IACd,CAAC;AAJD,CAIC,CAAA"}

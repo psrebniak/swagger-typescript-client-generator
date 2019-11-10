@@ -1,0 +1,1 @@
+{"version":3,"file":"abstractApiClient.js","sourceRoot":"","sources":["../src/abstractApiClient.ts"],"names":[],"mappings":";;AAEA;IAIE,2BAAY,aAAgB,EAAE,cAAkC;QAC9D,IAAI,CAAC,aAAa,GAAG,aAAa,CAAA;QAClC,IAAI,CAAC,cAAc,GAAG,cAAc,CAAA;IACtC,CAAC;IACH,wBAAC;AAAD,CAAC,AARD,IAQC;AARqB,8CAAiB"}

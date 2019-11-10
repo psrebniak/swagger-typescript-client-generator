@@ -1,0 +1,20 @@
+{
+  "name": "swagger-typescript-client-generator-runtime",
+  "version": "1.2.3",
+  "description": "Runtime modules for swagger-typescript-client-generator",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/psrebniak/swagger-typescript-client-generator.git"
+  },
+  "dependencies": {
+    "querystring": "*"
+  },
+  "keywords": [
+    "swagger",
+    "typescript",
+    "client"
+  ]
+}

@@ -1,0 +1,1 @@
+{"version":3,"file":"jsonReader.js","sourceRoot":"","sources":["../../src/fileReader/jsonReader.ts"],"names":[],"mappings":";;AAEA,uBAAwB;AAGX,QAAA,UAAU,GAAe,UAAC,OAA0B;IAC/D,IAAM,OAAO,GAAG,EAAE,CAAC,YAAY,CAAC,OAAO,CAAC,IAAI,EAAE,EAAC,QAAQ,EAAE,OAAO,EAAE,IAAI,EAAE,GAAG,EAAC,CAAC,CAAA;IAC7E,OAAO,IAAI,CAAC,KAAK,CAAC,OAAO,CAAC,CAAA;AAC5B,CAAC,CAAA"}
