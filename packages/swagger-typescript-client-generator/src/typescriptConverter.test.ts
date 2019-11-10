@@ -1,96 +1,96 @@
-import * as assert from 'assert'
-import { TypescriptConverter } from './typescriptConverter'
+import * as assert from "assert"
+import { TypescriptConverter } from "./typescriptConverter"
 
-describe('TypescriptConverter', () => {
-  describe('should generate correct type values', () => {
+describe("TypescriptConverter", () => {
+  describe("should generate correct type values", () => {
     let converter: TypescriptConverter
 
     before(() => {
       converter = new TypescriptConverter(null, null)
     })
 
-    it('it should generate correct enum type', () => {
+    it("it should generate correct enum type", () => {
       assert.deepEqual(
         converter.generateTypeValue({
-          type: 'enum',
-          enum: ['1', '2', '3']
+          type: "enum",
+          enum: ["1", "2", "3"]
         }),
-        '1 | 2 | 3'
+        "1 | 2 | 3"
       )
       assert.deepEqual(
         converter.generateTypeValue({
-          type: 'enum',
+          type: "enum",
           enum: ['"int"', '"string"', '"bool"']
         }),
         '"int" | "string" | "bool"'
       )
     })
 
-    it('it should generate correct number type', () => {
+    it("it should generate correct number type", () => {
       assert.deepEqual(
         converter.generateTypeValue({
-          type: 'number'
+          type: "number"
         }),
-        'number'
+        "number"
       )
       assert.deepEqual(
         converter.generateTypeValue({
-          type: 'integer'
+          type: "integer"
         }),
-        'number'
-      )
-    })
-
-    it('it should generate correct string type', () => {
-      assert.deepEqual(
-        converter.generateTypeValue({
-          type: 'string'
-        }),
-        'string'
+        "number"
       )
     })
 
-    it('it should generate correct boolean type', () => {
+    it("it should generate correct string type", () => {
       assert.deepEqual(
         converter.generateTypeValue({
-          type: 'boolean'
+          type: "string"
         }),
-        'boolean'
+        "string"
       )
     })
 
-    it('it should generate correct Array type', () => {
+    it("it should generate correct boolean type", () => {
       assert.deepEqual(
         converter.generateTypeValue({
-          type: 'array',
+          type: "boolean"
+        }),
+        "boolean"
+      )
+    })
+
+    it("it should generate correct Array type", () => {
+      assert.deepEqual(
+        converter.generateTypeValue({
+          type: "array",
           items: {
-            type: 'boolean'
+            type: "boolean"
           }
         }),
-        'Array<boolean>'
+        "Array<boolean>"
       )
 
       assert.deepEqual(
         converter.generateTypeValue({
-          type: 'array',
+          type: "array",
           items: {
-            $ref: 'definitions/SomeType'
+            $ref: "definitions/SomeType"
           }
         }),
-        'Array<SomeType>'
+        "Array<SomeType>"
       )
     })
 
-    it('it should generate correct object type with properties', () => {
+    it("it should generate correct object type with properties", () => {
       assert.deepEqual(
         converter.generateTypeValue({
-          type: 'object',
+          type: "object",
           properties: {
             test1: {
-              type: 'boolean'
+              type: "boolean"
             },
             test2: {
-              type: 'string'
+              type: "string"
             }
           }
         }),
@@ -98,63 +98,63 @@ describe('TypescriptConverter', () => {
       )
     })
 
-    it('it should generate correct object type with required properties', () => {
+    it("it should generate correct object type with required properties", () => {
       assert.deepEqual(
         converter.generateTypeValue({
-          type: 'object',
+          type: "object",
           properties: {
             test1: {
-              type: 'boolean'
+              type: "boolean"
             },
             test2: {
-              type: 'string'
+              type: "string"
             }
           },
-          required: ['test1']
+          required: ["test1"]
         }),
         `{\n'test1': boolean\n'test2'?: string\n}`
       )
     })
 
-    it('it should generate correct object type with additional props', () => {
+    it("it should generate correct object type with additional props", () => {
       assert.deepEqual(
         converter.generateTypeValue({
-          type: 'object',
+          type: "object",
           additionalProperties: {
-            type: 'string'
+            type: "string"
           }
         }),
         `string`
       )
     })
 
-    it('it should generate correct object type with props and additional props', () => {
+    it("it should generate correct object type with props and additional props", () => {
       assert.deepEqual(
         converter.generateTypeValue({
-          type: 'object',
+          type: "object",
           properties: {
             test1: {
-              type: 'string'
+              type: "string"
             }
           },
           additionalProperties: {
-            type: 'string'
+            type: "string"
           }
         }),
         `{\n'test1'?: string\n} & string`
       )
     })
 
-    it('it should generate correct object type with no props', () => {
+    it("it should generate correct object type with no props", () => {
       assert.deepEqual(
         converter.generateTypeValue({
-          type: 'object'
+          type: "object"
         }),
         `void`
       )
     })
 
-    it('it should generate correct type for unknown type', () => {
+    it("it should generate correct type for unknown type", () => {
       assert.deepEqual(converter.generateTypeValue({}), `any`)
     })
   })

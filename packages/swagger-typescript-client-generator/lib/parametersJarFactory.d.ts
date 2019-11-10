@@ -1,6 +1,6 @@
-import { Operation, Parameter, Spec } from 'swagger-schema-official'
-import { ParametersJar } from './parametersJar'
-import { ParameterType } from './swaggerTypes'
+import { Operation, Parameter, Spec } from "swagger-schema-official"
+import { ParametersJar } from "./parametersJar"
+import { ParameterType } from "./swaggerTypes"
 export declare class ParametersJarFactory {
   protected swagger: Spec
   constructor(swagger: Spec)
@@ -12,19 +12,19 @@ export declare class ParametersJarFactory {
   protected mapParameters(
     operation: Operation
   ): (
-    | import('swagger-schema-official').BodyParameter
-    | import('swagger-schema-official').QueryParameter
-    | (import('swagger-schema-official').PathParameter & {
+    | import("swagger-schema-official").BodyParameter
+    | import("swagger-schema-official").QueryParameter
+    | (import("swagger-schema-official").PathParameter & {
         $ref: string
       })
-    | (import('swagger-schema-official').HeaderParameter & {
+    | (import("swagger-schema-official").HeaderParameter & {
         $ref: string
       })
-    | (import('swagger-schema-official').FormDataParameter & {
+    | (import("swagger-schema-official").FormDataParameter & {
         $ref: string
       })
   )[]
   protected mapAuthorization(
     operation: Operation
-  ): import('swagger-schema-official').Security[]
+  ): import("swagger-schema-official").Security[]
 }

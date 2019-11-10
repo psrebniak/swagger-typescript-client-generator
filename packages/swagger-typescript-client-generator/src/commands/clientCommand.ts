@@ -1,8 +1,8 @@
-import { Command } from './command'
-import { CommandOptions } from './options'
-import { Spec } from 'swagger-schema-official'
-import { TypescriptClientGenerator } from '../typescriptClientGenerator'
-import { TypescriptConverter } from '../typescriptConverter'
+import { Command } from "./command"
+import { CommandOptions } from "./options"
+import { Spec } from "swagger-schema-official"
+import { TypescriptClientGenerator } from "../typescriptClientGenerator"
+import { TypescriptConverter } from "../typescriptConverter"
 
 interface ClientCommandOptions extends CommandOptions {
   importModelsFrom: string
@@ -24,5 +24,5 @@ export const clientCommand: Command<ClientCommandOptions> = (
     generator.generateImportsFromFile(options.importModelsFrom),
     generator.generateParameterTypesForOperations(),
     generator.generateClient(options.name)
-  ].join('')
+  ].join("")
 }

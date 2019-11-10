@@ -1,2 +1,2 @@
-import { Writer } from './writer'
+import { Writer } from "./writer"
 export declare const stdoutWriter: Writer

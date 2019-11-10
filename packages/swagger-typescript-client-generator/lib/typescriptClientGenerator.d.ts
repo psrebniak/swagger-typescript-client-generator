@@ -1,5 +1,5 @@
-import { Spec } from 'swagger-schema-official'
-import { BaseConverter } from './baseConverter'
+import { Spec } from "swagger-schema-official"
+import { BaseConverter } from "./baseConverter"
 export declare class TypescriptClientGenerator {
   protected swagger: Spec
   protected converter: BaseConverter

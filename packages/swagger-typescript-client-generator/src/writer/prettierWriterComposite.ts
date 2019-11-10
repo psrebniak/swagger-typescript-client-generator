@@ -1,6 +1,6 @@
-import * as prettier from 'prettier'
-import { WriterOptions } from './options'
-import { Writer } from './writer'
+import * as prettier from "prettier"
+import { WriterOptions } from "./options"
+import { Writer } from "./writer"
 
 export const prettierWriterComposite = (writer: Writer) => (
   content: string,
@@ -8,7 +8,7 @@ export const prettierWriterComposite = (writer: Writer) => (
 ) => {
   return writer(
     prettier.format(content, {
-      parser: 'typescript'
+      parser: "typescript"
     }),
     options
   )

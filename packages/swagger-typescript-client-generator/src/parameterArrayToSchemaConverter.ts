@@ -1,13 +1,13 @@
-import { Parameter, Schema } from 'swagger-schema-official'
+import { Parameter, Schema } from "swagger-schema-official"
 
 export class ParametersArrayToSchemaConverter {
   public convertToObject(parameters: Parameter[]): Schema {
     if (!Array.isArray(parameters)) {
-      throw new Error('invalid argument')
+      throw new Error("invalid argument")
     }
 
     const schema: Schema = {
-      type: 'object',
+      type: "object",
       required: parameters
         .filter(param => Boolean(param.required))
         .map(param => param.name),
@@ -23,7 +23,7 @@ export class ParametersArrayToSchemaConverter {
 
   public convertToUnion(parameters: Parameter[]): Schema {
     if (!Array.isArray(parameters)) {
-      throw new Error('invalid argument')
+      throw new Error("invalid argument")
     }
 
     return {

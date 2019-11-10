@@ -1,8 +1,8 @@
-import { Operation, Schema, Spec } from 'swagger-schema-official'
-import { BaseConverter } from './baseConverter'
-import { Normalizer } from './normalizer'
-import { ParametersArrayToSchemaConverter } from './parameterArrayToSchemaConverter'
-import { ParametersJarFactory } from './parametersJarFactory'
+import { Operation, Schema, Spec } from "swagger-schema-official"
+import { BaseConverter } from "./baseConverter"
+import { Normalizer } from "./normalizer"
+import { ParametersArrayToSchemaConverter } from "./parameterArrayToSchemaConverter"
+import { ParametersJarFactory } from "./parametersJarFactory"
 import {
   DEFINITION_TYPE_ARRAY,
   DEFINITION_TYPE_BOOLEAN,
@@ -16,18 +16,18 @@ import {
   PARAMETER_TYPE_HEADER,
   PARAMETER_TYPE_PATH,
   PARAMETER_TYPE_QUERY
-} from './swaggerTypes'
-import { TypescriptNameNormalizer } from './typescriptNameNormalizer'
+} from "./swaggerTypes"
+import { TypescriptNameNormalizer } from "./typescriptNameNormalizer"
 
-export const TYPESCRIPT_TYPE_UNDEFINED = 'undefined'
-export const TYPESCRIPT_TYPE_VOID = 'void'
-export const TYPESCRIPT_TYPE_ANY = 'any'
+export const TYPESCRIPT_TYPE_UNDEFINED = "undefined"
+export const TYPESCRIPT_TYPE_VOID = "void"
+export const TYPESCRIPT_TYPE_ANY = "any"
 
-const PARAMETER_PATH_SUFFIX = 'PathParameter'
-const PARAMETERS_QUERY_SUFFIX = 'QueryParameters'
-const PARAMETERS_BODY_SUFFIX = 'BodyParameters'
-const PARAMETERS_FORM_DATA_SUFFIX = 'FormDataParameters'
-const PARAMETERS_HEADER_SUFFIX = 'HeaderParameters'
+const PARAMETER_PATH_SUFFIX = "PathParameter"
+const PARAMETERS_QUERY_SUFFIX = "QueryParameters"
+const PARAMETERS_BODY_SUFFIX = "BodyParameters"
+const PARAMETERS_FORM_DATA_SUFFIX = "FormDataParameters"
+const PARAMETERS_HEADER_SUFFIX = "HeaderParameters"
 
 export interface SwaggerToTypescriptConverterSettings {
   allowVoidParameters?: boolean
@@ -102,7 +102,7 @@ export class TypescriptConverter implements BaseConverter {
       )
     }
 
-    return parameterTypes.join('\n')
+    return parameterTypes.join("\n")
   }
 
   public generateOperation(path: string, method: string, operation: Operation) {
@@ -115,7 +115,7 @@ export class TypescriptConverter implements BaseConverter {
       headerParams
     } = this.getParametersJarFactory().createFromOperation(operation)
 
-    let output = ''
+    let output = ""
 
     const parameters: string[] = pathParams.map(parameter => {
       return `${
@@ -166,10 +166,10 @@ export class TypescriptConverter implements BaseConverter {
       .map(([code, response]) => {
         return this.generateTypeValue(response)
       })
-      .join(' | ')
+      .join(" | ")
 
     output += `${name} (${parameters.join(
-      ', '
+      ", "
     )}): Promise<ApiResponse<${responseTypes}>> {\n`
     output += `let path = '${path}'\n`
 
@@ -177,12 +177,12 @@ export class TypescriptConverter implements BaseConverter {
       .map(parameter => {
         return `path = path.replace('{${parameter.name}}', String(${parameter.name}${PARAMETER_PATH_SUFFIX}))\n`
       })
-      .join('\n')
+      .join("\n")
 
     output += `return this.requestFactory(${args.join(
-      ', '
+      ", "
     )}, '${method.toUpperCase()}', this.configuration)\n`
-    output += '}\n'
+    output += "}\n"
 
     return output
   }
@@ -200,13 +200,13 @@ export class TypescriptConverter implements BaseConverter {
 
     if (definition.$ref) {
       return this.getNormalizer().normalize(
-        definition.$ref.substring(definition.$ref.lastIndexOf('/') + 1)
+        definition.$ref.substring(definition.$ref.lastIndexOf("/") + 1)
       )
     }
 
     switch (definition.type) {
       case DEFINITION_TYPE_ENUM: {
-        return definition.enum.join(' | ')
+        return definition.enum.join(" | ")
       }
       case DEFINITION_TYPE_STRING:
       case DEFINITION_TYPE_NUMBER:
@@ -220,26 +220,26 @@ export class TypescriptConverter implements BaseConverter {
         return `Array<${this.generateTypeValue(definition.items as Schema)}>`
       }
       case DEFINITION_TYPE_OBJECT: {
-        let output = ''
+        let output = ""
 
         const hasProperties =
           definition.properties && Object.keys(definition.properties).length > 0
         const hasAdditionalProperties = Boolean(definition.additionalProperties)
 
         if (hasProperties) {
-          output += '{\n'
+          output += "{\n"
           output += Object.entries(definition.properties)
             .map(([name, def]) => {
               const isRequired = (definition.required || []).indexOf(name)
               return `'${name}'${
-                isRequired ? '?' : ''
+                isRequired ? "?" : ""
               }: ${this.generateTypeValue(def)}`
             })
-            .join('\n')
-          output += '\n}'
+            .join("\n")
+          output += "\n}"
         }
         if (hasProperties && hasAdditionalProperties) {
-          output += ' & '
+          output += " & "
         }
         if (hasAdditionalProperties) {
           output += this.generateTypeValue(definition.additionalProperties)
@@ -256,7 +256,7 @@ export class TypescriptConverter implements BaseConverter {
       return (
         definition.allOf
           .map(schema => this.generateTypeValue(schema))
-          .join(' & ') || TYPESCRIPT_TYPE_VOID
+          .join(" & ") || TYPESCRIPT_TYPE_VOID
       )
     }
 
@@ -283,11 +283,11 @@ export class ${name}<T extends {} = {}> {
           .map(([method, operation]) => {
             return this.generateOperation(path, method, operation)
           })
-          .join('\n')
+          .join("\n")
       })
-      .join('\n')
+      .join("\n")
 
-    output += '}\n'
+    output += "}\n"
     return output
   }
 

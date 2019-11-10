@@ -1,5 +1,5 @@
-import { CommandOptions } from './options'
-import { Spec } from 'swagger-schema-official'
+import { CommandOptions } from "./options"
+import { Spec } from "swagger-schema-official"
 
 export type Command<Options extends CommandOptions = CommandOptions> = (
   swagger: Spec,

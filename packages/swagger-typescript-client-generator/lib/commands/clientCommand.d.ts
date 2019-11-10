@@ -1,5 +1,5 @@
-import { Command } from './command'
-import { CommandOptions } from './options'
+import { Command } from "./command"
+import { CommandOptions } from "./options"
 interface ClientCommandOptions extends CommandOptions {
   importModelsFrom: string
   name: string

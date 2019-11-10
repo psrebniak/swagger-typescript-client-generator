@@ -1,4 +1,4 @@
-import { Parameter } from 'swagger-schema-official'
+import { Parameter } from "swagger-schema-official"
 
 export interface ParametersJar {
   pathParams: Parameter[]

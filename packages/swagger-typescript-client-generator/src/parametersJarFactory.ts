@@ -1,5 +1,5 @@
-import { Operation, Parameter, Spec } from 'swagger-schema-official'
-import { ParametersJar } from './parametersJar'
+import { Operation, Parameter, Spec } from "swagger-schema-official"
+import { ParametersJar } from "./parametersJar"
 import {
   PARAMETER_TYPE_BODY,
   PARAMETER_TYPE_FORM_DATA,
@@ -7,7 +7,7 @@ import {
   PARAMETER_TYPE_PATH,
   PARAMETER_TYPE_QUERY,
   ParameterType
-} from './swaggerTypes'
+} from "./swaggerTypes"
 
 export class ParametersJarFactory {
   constructor(protected swagger: Spec) {}
@@ -54,7 +54,7 @@ export class ParametersJarFactory {
     return (operation.parameters || []).map(
       (parameter: Parameter & { $ref: string }) => {
         if (parameter.$ref) {
-          const segments = parameter.$ref.split('/')
+          const segments = parameter.$ref.split("/")
           const referred = this.swagger.parameters[
             segments.length === 1 ? segments[0] : segments[2]
           ]

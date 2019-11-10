@@ -1,5 +1,5 @@
-import { Spec } from 'swagger-schema-official'
-import { BaseConverter } from './baseConverter'
+import { Spec } from "swagger-schema-official"
+import { BaseConverter } from "./baseConverter"
 
 export class TypescriptClientGenerator {
   constructor(protected swagger: Spec, protected converter: BaseConverter) {}
@@ -9,7 +9,7 @@ export class TypescriptClientGenerator {
       this.generateModels(),
       this.generateParameterTypesForOperations(),
       this.generateClient(clientName)
-    ].join('\n')
+    ].join("\n")
   }
 
   public generateModels(): string {
@@ -19,7 +19,7 @@ export class TypescriptClientGenerator {
       .map(([name, def]) => {
         return this.converter.generateType(name, def)
       })
-      .join('\n')
+      .join("\n")
   }
 
   public generateParameterTypesForOperations() {
@@ -33,16 +33,16 @@ export class TypescriptClientGenerator {
               operation
             )
           })
-          .join('\n')
+          .join("\n")
       })
-      .join('\n')
+      .join("\n")
   }
 
   public generateImportsFromFile(importPath: string): string {
     const names = []
       .concat(Object.keys(this.swagger.definitions || {}))
       .map(name => this.converter.getNormalizer().normalize(name))
-      .join(',\n  ')
+      .join(",\n  ")
 
     return `import {\n  ${names} \n} from '${importPath}'\n`
   }

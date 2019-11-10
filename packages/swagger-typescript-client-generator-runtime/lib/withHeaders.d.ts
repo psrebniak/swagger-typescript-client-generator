@@ -1,4 +1,4 @@
-import { RequestFactoryType } from './index'
+import { RequestFactoryType } from "./index"
 export declare const withHeaders: (
   requestFactory: RequestFactoryType,
   overrideHeaders: Headers

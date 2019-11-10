@@ -1,5 +1,5 @@
-import { Operation, Schema } from 'swagger-schema-official'
-import { Normalizer } from './normalizer'
+import { Operation, Schema } from "swagger-schema-official"
+import { Normalizer } from "./normalizer"
 
 export interface BaseConverter {
   generateOperation(path: string, method: string, operation: Operation): string

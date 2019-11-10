@@ -1,5 +1,5 @@
-import { RequestFactoryType } from './index'
-import * as querystring from 'querystring'
+import { RequestFactoryType } from "./index"
+import * as querystring from "querystring"
 
 export type WhatWgFetchFunctionType = (
   input: RequestInfo,
@@ -7,7 +7,7 @@ export type WhatWgFetchFunctionType = (
 ) => Promise<Response>
 
 export interface WhatWgFetchRequestFactoryOptions {
-  requestInit: Omit<RequestInit, 'body' | 'method'>
+  requestInit: Omit<RequestInit, "body" | "method">
   fetch?: WhatWgFetchFunctionType
 }
 
@@ -34,9 +34,9 @@ export const WhatWgFetchRequestFactory = (
     headers: headersObject
   })
 
-  if (body && typeof body === 'string') {
+  if (body && typeof body === "string") {
     fetchOptions.body = body
-  } else if (body && typeof body === 'object' && Object.keys(body).length > 0) {
+  } else if (body && typeof body === "object" && Object.keys(body).length > 0) {
     fetchOptions.body = JSON.stringify(body)
   } else if (formData && Object.keys(formData).length > 0) {
     fetchOptions.body = Object.keys(formData).reduce((data, key) => {
@@ -49,12 +49,12 @@ export const WhatWgFetchRequestFactory = (
   const fullUrl = [
     baseUrl,
     path,
-    hasQuery ? (path.includes('?') ? '&' : '?') : '',
-    hasQuery ? querystring.stringify(query) : ''
-  ].join('')
+    hasQuery ? (path.includes("?") ? "&" : "?") : "",
+    hasQuery ? querystring.stringify(query) : ""
+  ].join("")
 
   const callback: WhatWgFetchFunctionType =
-    typeof options.fetch === 'function' ? options.fetch : fetch
+    typeof options.fetch === "function" ? options.fetch : fetch
 
   return callback(fullUrl, fetchOptions)
 }

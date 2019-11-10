@@ -1,10 +1,10 @@
-import { RequestFactoryType } from './index'
+import { RequestFactoryType } from "./index"
 export declare type WhatWgFetchFunctionType = (
   input: RequestInfo,
   init?: RequestInit
 ) => Promise<Response>
 export interface WhatWgFetchRequestFactoryOptions {
-  requestInit: Omit<RequestInit, 'body' | 'method'>
+  requestInit: Omit<RequestInit, "body" | "method">
   fetch?: WhatWgFetchFunctionType
 }
 export declare const WhatWgFetchRequestFactory: (

@@ -1,8 +1,8 @@
-import { Command } from './command'
-import { CommandOptions } from './options'
-import { Spec } from 'swagger-schema-official'
-import { TypescriptClientGenerator } from '../typescriptClientGenerator'
-import { TypescriptConverter } from '../typescriptConverter'
+import { Command } from "./command"
+import { CommandOptions } from "./options"
+import { Spec } from "swagger-schema-official"
+import { TypescriptClientGenerator } from "../typescriptClientGenerator"
+import { TypescriptConverter } from "../typescriptConverter"
 
 export const modelsCommand: Command = (
   swagger: Spec,

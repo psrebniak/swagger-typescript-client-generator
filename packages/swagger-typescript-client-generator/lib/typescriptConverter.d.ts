@@ -1,11 +1,11 @@
-import { Operation, Schema, Spec } from 'swagger-schema-official'
-import { BaseConverter } from './baseConverter'
-import { Normalizer } from './normalizer'
-import { ParametersArrayToSchemaConverter } from './parameterArrayToSchemaConverter'
-import { ParametersJarFactory } from './parametersJarFactory'
-export declare const TYPESCRIPT_TYPE_UNDEFINED = 'undefined'
-export declare const TYPESCRIPT_TYPE_VOID = 'void'
-export declare const TYPESCRIPT_TYPE_ANY = 'any'
+import { Operation, Schema, Spec } from "swagger-schema-official"
+import { BaseConverter } from "./baseConverter"
+import { Normalizer } from "./normalizer"
+import { ParametersArrayToSchemaConverter } from "./parameterArrayToSchemaConverter"
+import { ParametersJarFactory } from "./parametersJarFactory"
+export declare const TYPESCRIPT_TYPE_UNDEFINED = "undefined"
+export declare const TYPESCRIPT_TYPE_VOID = "void"
+export declare const TYPESCRIPT_TYPE_ANY = "any"
 export interface SwaggerToTypescriptConverterSettings {
   allowVoidParameters?: boolean
 }

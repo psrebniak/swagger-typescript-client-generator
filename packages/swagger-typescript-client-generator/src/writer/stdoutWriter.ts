@@ -1,5 +1,5 @@
-import { Writer } from './writer'
-import { WriterOptions } from './options'
+import { Writer } from "./writer"
+import { WriterOptions } from "./options"
 
 export const stdoutWriter: Writer = (
   content: string,
