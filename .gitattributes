@@ -1,0 +1,2 @@
+packages/*/lib/**/*.js linguist-generated
+packages/*/lib/**/*.d.ts linguist-generated

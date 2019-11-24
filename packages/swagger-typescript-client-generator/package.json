@@ -1,6 +1,6 @@
 {
   "name": "swagger-typescript-client-generator",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "description": "Tool to convert swagger 2.0 file to typescript client",
   "main": "lib/index.js",
   "bin": "bin/index.js",
@@ -11,15 +11,17 @@
     "url": "https://github.com/psrebniak/swagger-typescript-client-generator.git"
   },
   "dependencies": {
+    "js-yaml": "^3.13.1",
     "prettier": "^1.19.1",
-    "swagger-typescript-client-generator-runtime": "latest",
+    "swagger-typescript-client-generator-runtime": "^1.4.0",
     "yargs": "^13.2.2"
   },
   "devDependencies": {
-    "@types/yargs": "^12.0.13",
+    "@types/js-yaml": "^3.12.1",
     "@types/prettier": "^1.18.3",
-    "swagger-schema-official": "latest",
-    "@types/swagger-schema-official": "^2.0.15"
+    "@types/swagger-schema-official": "^2.0.15",
+    "@types/yargs": "^12.0.13",
+    "swagger-schema-official": "latest"
   },
   "keywords": [
     "swagger",

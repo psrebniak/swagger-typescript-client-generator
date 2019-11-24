@@ -3,6 +3,7 @@ tsconfig.json
 yarn.lock
 __mocks__
 __snapshot__
+lib/**/*.test.js
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
