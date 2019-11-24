@@ -1,0 +1,88 @@
+{
+  "swagger": "2.0",
+  "paths": {
+    "/primitives/string/{parameter}": {
+      "get": {
+        "summary": "Gets a random string",
+        "parameters": [
+          {
+            "name": "parameter",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/StringResponse"
+            }
+          }
+        }
+      }
+    },
+    "/primitives/number/{parameter}": {
+      "get": {
+        "summary": "Gets a random number",
+        "parameters": [
+          {
+            "name": "parameter",
+            "in": "path",
+            "type": "number",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/NumberResponse"
+            }
+          }
+        }
+      }
+    },
+    "/primitives/boolean/{parameter}": {
+      "get": {
+        "summary": "Gets a random boolean",
+        "parameters": [
+          {
+            "name": "parameter",
+            "in": "path",
+            "type": "boolean",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BooleanResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "StringResponse": {
+      "type": "string",
+      "default": "default value",
+      "format": "DateTime",
+      "description": "string response definition"
+    },
+    "NumberResponse": {
+      "type": "number",
+      "format": "float",
+      "minimum": 0,
+      "maximum": 9,
+      "default": "5",
+      "description": "number response definition"
+    },
+    "BooleanResponse": {
+      "type": "boolean",
+      "description": "boolean response definition"
+    }
+  }
+}

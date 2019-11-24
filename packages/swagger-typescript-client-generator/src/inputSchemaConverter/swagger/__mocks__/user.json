@@ -1,0 +1,49 @@
+{
+  "swagger": "2.0",
+  "paths": {
+    "/users/{id}": {
+      "get": {
+        "summary": "Gets a user by ID.",
+        "description": "A detailed description of the operation. GitHub Flavored Markdown can be used for rich text representation, such as **bold**, *italic* and [links](https://swagger.io).\n",
+        "operationId": "getUsers",
+        "tags": ["users"],
+        "produces": ["application/json", "application/xml"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User ID",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "http://api.example.com/docs/user-operations/",
+          "description": "Learn more about User operations provided by this API."
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "name"]
+    }
+  }
+}
