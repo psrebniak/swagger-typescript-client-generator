@@ -1,45 +1,55 @@
 {
   "name": "swagger-typescript-client-generator",
-  "version": "1.2.0",
-  "description": "Tool to convert swagger 2.0 file to typescript client",
-  "main": "lib/index.js",
-  "bin": "bin/index.js",
-  "types": "lib/index.d.ts",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/psrebniak/swagger-typescript-client-generator.git"
-  },
+  "private": true,
   "scripts": {
-    "clean": "rimraf ./lib",
-    "prebuild": "npm run clean && npm run test",
-    "build": "tsc -p .",
-    "test": "mocha -r ts-node/register src/**/*.test.ts",
-    "prepublish": "npm run test && npm run build",
-    "lint": "tslint --project . --format verbose"
+    "clean": "rimraf ./packages/*/lib",
+    "prebuild": "yarn clean",
+    "build": "tsc --build --preserveWatchOutput",
+    "format": "yarn run lint:prettier --write",
+    "lint": "yarn lint:prettier && yarn run lint:tslint",
+    "lint:tslint": "tslint -c 'packages/**/*.ts' --format verbose",
+    "lint:prettier": "prettier -l '**/*.{ts,json,md,yml}' .prettierrc "
   },
+  "workspaces": [
+    "packages/swagger-typescript-client-generator",
+    "packages/swagger-typescript-client-generator-runtime"
+  ],
   "dependencies": {
-    "@typescript-eslint/typescript-estree": "^1.6.0",
-    "prettier": "^1.16.4",
-    "yargs": "^13.2.2"
+    "lerna": "^3.17.0"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.6",
+    "@types/mocha": "^5.2.7",
     "@types/node": "8",
-    "@types/prettier": "^1.16.1",
-    "@types/swagger-schema-official": "^2.0.15",
-    "@types/yargs": "^12.0.11",
-    "mocha": "^6.0.2",
-    "rimraf": "^2.6.3",
-    "swagger-schema-official": "latest",
-    "ts-node": "^8.0.3",
-    "tslint": "^5.15.0",
-    "tslint-eslint-rules": "^5.4.0",
-    "typescript": "^3.4.1"
+    "@typescript-eslint/eslint-plugin": "^2.6.1",
+    "@typescript-eslint/parser": "^2.6.1",
+    "commit-message-validator": "^0.1.11",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
+    "mocha": "^6.2.2",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.0",
+    "typescript": "^3.7.2"
   },
-  "keywords": [
-    "swagger",
-    "typescript",
-    "client"
-  ]
+  "config": {
+    "commit-message-validator": {
+      "pattern": "^(M|merge .*)|((revert: )?(feat|fix|docs|style|refactor|perf|test|chore)(\\(\\#[0-9]+\\))?: .{1,50})",
+      "errorMessage": "Commit does not follow semantic messages - please check https://dev.to/maxpou/enhance-your-git-log-with-conventional-commits-3ea4"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commit-message-validator",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "!(*.d).ts": [
+      "eslint --fix",
+      "prettier --write",
+      "git add "
+    ]
+  }
 }

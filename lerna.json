@@ -1,0 +1,12 @@
+{
+  "packages": [
+    "packages/swagger-typescript-client-generator",
+    "packages/swagger-typescript-client-generator-runtime"
+  ],
+  "npmClient": "yarn",
+  "workspaces": [
+    "packages/swagger-typescript-client-generator",
+    "packages/swagger-typescript-client-generator-runtime"
+  ],
+  "version": "0.0.0"
+}

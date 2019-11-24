@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PARAMETER_TYPE_PATH = "path";
+exports.PARAMETER_TYPE_BODY = "body";
+exports.PARAMETER_TYPE_FORM_DATA = "formData";
+exports.PARAMETER_TYPE_QUERY = "query";
+exports.PARAMETER_TYPE_HEADER = "header";
+exports.DEFINITION_TYPE_ENUM = "enum";
+exports.DEFINITION_TYPE_STRING = "string";
+exports.DEFINITION_TYPE_NUMBER = "number";
+exports.DEFINITION_TYPE_INTEGER = "integer";
+exports.DEFINITION_TYPE_BOOLEAN = "boolean";
+exports.DEFINITION_TYPE_OBJECT = "object";
+exports.DEFINITION_TYPE_ARRAY = "array";
+//# sourceMappingURL=swaggerTypes.js.map

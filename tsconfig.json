@@ -1,24 +1,11 @@
 {
+  "extends": "./base.tsconfig.json",
+  "references": [
+    { "path": "packages/swagger-typescript-client-generator-runtime" },
+    { "path": "packages/swagger-typescript-client-generator" }
+  ],
+  "files": [],
   "compilerOptions": {
-    "target": "es5",
-    "moduleResolution": "node",
-    "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "sourceMap": true,
-    "baseUrl": "src",
-    "outDir": "lib",
-    "lib": [
-      "es6",
-      "es7",
-      "es2017",
-      "es2017.object"
-    ],
-    "declaration": true
-  },
-  "exclude": [
-    "node_modules",
-    "lib",
-    "src/*.test.ts",
-    "tmp"
-  ]
+    "declaration": false
+  }
 }
