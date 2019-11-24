@@ -13,6 +13,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+var assert = require("assert");
 var abstractApiClient_1 = require("./abstractApiClient");
 describe("Runtime: abstract api client does not cause typescript error", function () {
     var ApiClient = /** @class */ (function (_super) {
@@ -22,6 +23,8 @@ describe("Runtime: abstract api client does not cause typescript error", functio
         }
         return ApiClient;
     }(abstractApiClient_1.AbstractApiClient));
-    new ApiClient({ baseUrl: "http://example.com" }, undefined);
+    assert.doesNotThrow(function () {
+        new ApiClient({ baseUrl: "http://example.com" }, undefined);
+    }, "new instance can be created");
 });
 //# sourceMappingURL=abstractApiClient.test.js.map

@@ -204,6 +204,14 @@ export class TypescriptConverter implements BaseConverter {
       )
     }
 
+    if (Array.isArray(definition.allOf) && definition.allOf.length > 0) {
+      return (
+        definition.allOf
+          .map(schema => this.generateTypeValue(schema))
+          .join(" & ") || TYPESCRIPT_TYPE_VOID
+      )
+    }
+
     switch (definition.type) {
       case DEFINITION_TYPE_ENUM: {
         return definition.enum.join(" | ")
@@ -250,14 +258,6 @@ export class TypescriptConverter implements BaseConverter {
         }
         return output
       }
-    }
-
-    if (Array.isArray(definition.allOf) && definition.allOf.length > 0) {
-      return (
-        definition.allOf
-          .map(schema => this.generateTypeValue(schema))
-          .join(" & ") || TYPESCRIPT_TYPE_VOID
-      )
     }
 
     return TYPESCRIPT_TYPE_ANY

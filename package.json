@@ -1,11 +1,13 @@
 {
   "name": "swagger-typescript-client-generator",
+  "version": "1.2.3",
   "private": true,
   "scripts": {
     "clean": "rimraf ./packages/*/lib",
     "prebuild": "yarn clean",
     "build": "tsc --build --preserveWatchOutput",
     "format": "yarn run lint:prettier --write",
+    "test": "yarn build && mocha packages/**/*.test.js",
     "lint": "yarn lint:prettier && yarn run lint:tslint",
     "lint:tslint": "tslint -c 'packages/**/*.ts' --format verbose",
     "lint:prettier": "prettier -l '**/*.{ts,json,md,yml}' .prettierrc "
@@ -31,11 +33,12 @@
     "mocha": "^6.2.2",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
+    "ts-node": "^8.5.2",
     "typescript": "^3.7.2"
   },
   "config": {
     "commit-message-validator": {
-      "pattern": "^(M|merge .*)|((revert: )?(feat|fix|docs|style|refactor|perf|test|chore)(\\(\\#[0-9]+\\))?: .{1,50})",
+      "pattern": "^(M|merge .*)|(v[0-9]+\\.[0-9]+\\.[0-9]+)|((revert: )?(feat|fix|docs|style|refactor|perf|test|chore)(\\(\\#[0-9]+\\))?: .{1,50})",
       "errorMessage": "Commit does not follow semantic messages - please check https://dev.to/maxpou/enhance-your-git-log-with-conventional-commits-3ea4"
     }
   },

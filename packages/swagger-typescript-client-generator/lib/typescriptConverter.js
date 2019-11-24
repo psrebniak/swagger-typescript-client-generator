@@ -110,6 +110,11 @@ var TypescriptConverter = /** @class */ (function () {
         if (definition.$ref) {
             return this.getNormalizer().normalize(definition.$ref.substring(definition.$ref.lastIndexOf("/") + 1));
         }
+        if (Array.isArray(definition.allOf) && definition.allOf.length > 0) {
+            return (definition.allOf
+                .map(function (schema) { return _this.generateTypeValue(schema); })
+                .join(" & ") || exports.TYPESCRIPT_TYPE_VOID);
+        }
         switch (definition.type) {
             case swaggerTypes_1.DEFINITION_TYPE_ENUM: {
                 return definition.enum.join(" | ");
@@ -151,11 +156,6 @@ var TypescriptConverter = /** @class */ (function () {
                 }
                 return output;
             }
-        }
-        if (Array.isArray(definition.allOf) && definition.allOf.length > 0) {
-            return (definition.allOf
-                .map(function (schema) { return _this.generateTypeValue(schema); })
-                .join(" & ") || exports.TYPESCRIPT_TYPE_VOID);
         }
         return exports.TYPESCRIPT_TYPE_ANY;
     };

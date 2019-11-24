@@ -1,3 +1,4 @@
+import * as assert from "assert"
 import { AbstractApiClient } from "./abstractApiClient"
 
 interface ApiClientConfig {
@@ -6,6 +7,7 @@ interface ApiClientConfig {
 
 describe("Runtime: abstract api client does not cause typescript error", () => {
   class ApiClient extends AbstractApiClient<ApiClientConfig> {}
-
-  new ApiClient({ baseUrl: "http://example.com" }, undefined)
+  assert.doesNotThrow(() => {
+    new ApiClient({ baseUrl: "http://example.com" }, undefined)
+  }, "new instance can be created")
 })
