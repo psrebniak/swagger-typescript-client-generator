@@ -9,23 +9,15 @@
   },
   "host": "petstore.swagger.io",
   "basePath": "/v1",
-  "schemes": [
-    "http"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "paths": {
     "/pets": {
       "get": {
         "summary": "List all pets",
         "operationId": "listPets",
-        "tags": [
-          "pets"
-        ],
+        "tags": ["pets"],
         "parameters": [
           {
             "name": "limit",
@@ -60,9 +52,7 @@
       "post": {
         "summary": "Create a pet",
         "operationId": "createPets",
-        "tags": [
-          "pets"
-        ],
+        "tags": ["pets"],
         "responses": {
           "201": {
             "description": "Null response"
@@ -80,9 +70,7 @@
       "get": {
         "summary": "Info for a specific pet",
         "operationId": "showPetById",
-        "tags": [
-          "pets"
-        ],
+        "tags": ["pets"],
         "parameters": [
           {
             "name": "petId",
@@ -112,10 +100,7 @@
   "definitions": {
     "Pet": {
       "type": "object",
-      "required": [
-        "id",
-        "name"
-      ],
+      "required": ["id", "name"],
       "properties": {
         "id": {
           "type": "integer",
@@ -137,10 +122,7 @@
     },
     "Error": {
       "type": "object",
-      "required": [
-        "code",
-        "message"
-      ],
+      "required": ["code", "message"],
       "properties": {
         "code": {
           "type": "integer",

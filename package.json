@@ -14,7 +14,7 @@
     "format": "yarn run lint:prettier --write",
     "lint": "yarn lint:prettier && yarn run lint:tslint",
     "lint:tslint": "tslint -c 'packages/**/*.ts' --format verbose",
-    "lint:prettier": "prettier -l '**/*.{ts,json,md,yml}' .prettierrc "
+    "lint:prettier": "prettier -l '**/*.{ts,json,md,yml}' .prettierrc"
   },
   "workspaces": [
     "packages/swagger-typescript-client-generator",
@@ -54,6 +54,10 @@
   "lint-staged": {
     "!(*.d).ts": [
       "eslint --fix",
+      "prettier --write",
+      "git add "
+    ],
+    "*.(json|md)": [
       "prettier --write",
       "git add "
     ]
