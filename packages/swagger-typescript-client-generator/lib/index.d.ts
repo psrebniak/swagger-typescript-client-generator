@@ -1,2 +1,2 @@
-export { TypescriptConverter } from "./typescriptConverter";
-export { TypescriptClientGenerator } from "./typescriptClientGenerator";
+export { TypescriptConverter } from "./typescriptConverter"
+export { TypescriptClientGenerator } from "./typescriptClientGenerator"

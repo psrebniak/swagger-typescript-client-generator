@@ -1,4 +1,4 @@
 export interface CommandOptions {
-    file: string;
-    allowVoidParameterTypes: boolean;
+  file: string
+  allowVoidParameterTypes: boolean
 }

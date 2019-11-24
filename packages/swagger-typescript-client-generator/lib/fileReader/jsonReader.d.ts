@@ -1,2 +1,2 @@
-import { FileReader } from "./fileReader";
-export declare const jsonReader: FileReader;
+import { FileReader } from "./fileReader"
+export declare const jsonReader: FileReader

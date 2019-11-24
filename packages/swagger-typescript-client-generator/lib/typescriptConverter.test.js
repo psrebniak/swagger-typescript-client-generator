@@ -122,7 +122,7 @@ describe("TypescriptConverter", function () {
                                 type: "string"
                             }
                         }
-                    },
+                    }
                 ]
             }), "{\n'key'?: string\n} & {\n'value'?: string\n}");
         });

@@ -1,1 +1,1 @@
-export declare type WriterOptions = any;
+export declare type WriterOptions = any

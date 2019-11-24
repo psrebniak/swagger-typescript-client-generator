@@ -1,2 +1,2 @@
-import { Writer } from "./writer";
-export declare const writerFactory: (options: any) => Writer;
+import { Writer } from "./writer"
+export declare const writerFactory: (options: any) => Writer

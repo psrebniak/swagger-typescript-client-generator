@@ -1,3 +1,3 @@
 export interface FileReaderOptions {
-    file: string;
+  file: string
 }
