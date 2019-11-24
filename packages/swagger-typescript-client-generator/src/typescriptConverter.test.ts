@@ -154,6 +154,33 @@ describe("TypescriptConverter", () => {
       )
     })
 
+    it("it should generate correct intersection type", () => {
+      assert.deepEqual(
+        converter.generateTypeValue({
+          type: "object",
+          allOf: [
+            {
+              type: "object",
+              properties: {
+                key: {
+                  type: "string"
+                }
+              }
+            },
+            {
+              type: "object",
+              properties: {
+                value: {
+                  type: "string"
+                }
+              }
+            }
+          ]
+        }),
+        "{\n'key'?: string\n} & {\n'value'?: string\n}"
+      )
+    })
+
     it("it should generate correct type for unknown type", () => {
       assert.deepEqual(converter.generateTypeValue({}), `any`)
     })
