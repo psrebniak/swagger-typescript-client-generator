@@ -5,12 +5,13 @@
     "clean": "rimraf ./packages/*/lib",
     "prebuild": "yarn clean",
     "build": "tsc --build --preserveWatchOutput",
-    "format": "yarn run lint:prettier --write",
+    "pretest": "yarn build",
     "test": "yarn test:mocha && yarn test:petstore",
     "test:mocha": "yarn build && mocha packages/**/*.test.js",
     "test:petstore": "yarn test:petstore:json && yarn test:petstore:yaml",
     "test:petstore:json": "swagger-typescript-client-generator bundle PetStore -f ./tests/petstore.json > ./tests/petstore.json.snapshot.ts",
     "test:petstore:yaml": "swagger-typescript-client-generator bundle PetStore -f ./tests/petstore.yaml > ./tests/petstore.yaml.snapshot.ts",
+    "format": "yarn run lint:prettier --write",
     "lint": "yarn lint:prettier && yarn run lint:tslint",
     "lint:tslint": "tslint -c 'packages/**/*.ts' --format verbose",
     "lint:prettier": "prettier -l '**/*.{ts,json,md,yml}' .prettierrc "
@@ -36,7 +37,6 @@
     "mocha": "^6.2.2",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
-    "ts-node": "^8.5.2",
     "typescript": "^3.7.2"
   },
   "config": {
