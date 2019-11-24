@@ -1,6 +1,7 @@
 src
 tsconfig.json
 yarn.lock
+lib/**/*.test.js
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
