@@ -1,5 +1,6 @@
 import { FileReaderOptions } from "./options"
 import { jsonReader } from "./jsonReader"
+import { yamlReader } from "./yamlReader"
 
 export const readerFactory = (options: FileReaderOptions) => {
   if (typeof options.file !== "string") {
@@ -8,6 +9,10 @@ export const readerFactory = (options: FileReaderOptions) => {
 
   if (options.file.endsWith(".json")) {
     return jsonReader
+  }
+
+  if (options.file.endsWith(".yml") || options.file.endsWith(".yaml")) {
+    return yamlReader
   }
 
   throw new Error(

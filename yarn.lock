@@ -865,6 +865,11 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
+"@types/js-yaml@^3.12.1":
+  version "3.12.1"
+  resolved "https://registry.yarnpkg.com/@types/js-yaml/-/js-yaml-3.12.1.tgz#5c6f4a1eabca84792fbd916f0cb40847f123c656"
+  integrity sha512-SGGAhXLHDx+PK4YLNcNGa6goPf9XRWQNAUUbffkwVGGXIxmDKWyGGL4inzq2sPmExu431Ekb9aEMn9BkPqEYFA==
+
 "@types/json-schema@^7.0.3":
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.3.tgz#bdfd69d61e464dcc81b25159c270d75a73c1a636"
@@ -5639,13 +5644,6 @@ swagger-schema-official@latest:
   version "2.0.0-bab6bed"
   resolved "https://registry.yarnpkg.com/swagger-schema-official/-/swagger-schema-official-2.0.0-bab6bed.tgz#70070468d6d2977ca5237b2e519ca7d06a2ea3fd"
   integrity sha1-cAcEaNbSl3ylI3suUZyn0Gouo/0=
-
-swagger-typescript-client-generator-runtime@latest:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/swagger-typescript-client-generator-runtime/-/swagger-typescript-client-generator-runtime-1.2.3.tgz#8257cd2cda0c417a3f3a77b40770dec93903fc92"
-  integrity sha512-xQhhJRAsHlwRIeC+jkVU+Tskc0zVS0Fd54s2pD9ToNUiIdqX8oNMYDdAnZxhAwoVcvdsvfiyKDxdq/nuqBXVnw==
-  dependencies:
-    querystring "*"
 
 symbol-observable@^1.1.0:
   version "1.2.0"
