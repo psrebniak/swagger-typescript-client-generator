@@ -4,10 +4,16 @@
     "moduleResolution": "node",
     "noImplicitAny": true,
     "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "strictBindCallApply": true,
+    "strictNullChecks": false,
+    "strictFunctionTypes": false,
+    "strictPropertyInitialization": false,
     "sourceMap": true,
     "baseUrl": "src",
     "outDir": "lib",
-    "lib": ["dom", "es6", "es7", "es2017"],
     "declaration": true
   },
   "exclude": ["node_modules", "packages/**/*.test.ts", "packages/**/*.test.js"]

@@ -130,40 +130,45 @@ var TypescriptConverter = /** @class */ (function () {
             case swaggerTypes_1.DEFINITION_TYPE_ARRAY: {
                 return "Array<" + this.generateTypeValue(definition.items) + ">";
             }
-            case swaggerTypes_1.DEFINITION_TYPE_OBJECT: {
-                var output = "";
-                var hasProperties = definition.properties && Object.keys(definition.properties).length > 0;
-                var hasAdditionalProperties = Boolean(definition.additionalProperties);
+        }
+        if (definition.type === swaggerTypes_1.DEFINITION_TYPE_OBJECT ||
+            (!definition.type &&
+                (definition.allOf ||
+                    definition.properties ||
+                    definition.additionalProperties))) {
+            var output = "";
+            var hasProperties = definition.properties && Object.keys(definition.properties).length > 0;
+            if (hasProperties) {
+                output += "{\n";
+                output += Object.entries(definition.properties)
+                    .map(function (_a) {
+                    var name = _a[0], def = _a[1];
+                    var isRequired = (definition.required || []).indexOf(name);
+                    return "'" + name + "'" + (isRequired ? "?" : "") + ": " + _this.generateTypeValue(def);
+                })
+                    .join("\n");
+                output += "\n}";
+            }
+            if (definition.additionalProperties &&
+                typeof definition.additionalProperties === "object") {
                 if (hasProperties) {
-                    output += "{\n";
-                    output += Object.entries(definition.properties)
-                        .map(function (_a) {
-                        var name = _a[0], def = _a[1];
-                        var isRequired = (definition.required || []).indexOf(name);
-                        return "'" + name + "'" + (isRequired ? "?" : "") + ": " + _this.generateTypeValue(def);
-                    })
-                        .join("\n");
-                    output += "\n}";
-                }
-                if (hasProperties && hasAdditionalProperties) {
                     output += " & ";
                 }
-                if (hasAdditionalProperties) {
-                    output += this.generateTypeValue(definition.additionalProperties);
-                }
-                if (output.trim().length === 0) {
-                    return exports.TYPESCRIPT_TYPE_VOID;
-                }
-                return output;
+                output +=
+                    "{ [key: string]: " +
+                        this.generateTypeValue(definition.additionalProperties) +
+                        " }";
             }
+            if (output.trim().length === 0) {
+                return exports.TYPESCRIPT_TYPE_VOID;
+            }
+            return output;
         }
         return exports.TYPESCRIPT_TYPE_ANY;
     };
     TypescriptConverter.prototype.generateClient = function (name) {
         var _this = this;
-        // tslint:disable max-line-length
         var output = "\n\nexport interface ApiResponse<T> extends Response {\n  json (): Promise<T>\n}\nexport type RequestFactoryType = (path: string, query: any, body: any, formData: any, headers: any, method: string, configuration: any) => Promise<ApiResponse<any>>\n\nexport class " + name + "<T extends {} = {}> {\n  constructor(protected configuration: T, protected requestFactory: RequestFactoryType) {}\n";
-        // tslint:enable max-line-length
         output += Object.entries(this.swagger.paths)
             .map(function (_a) {
             var path = _a[0], methods = _a[1];

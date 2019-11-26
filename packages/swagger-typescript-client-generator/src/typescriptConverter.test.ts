@@ -116,15 +116,20 @@ describe("TypescriptConverter", () => {
       )
     })
 
-    it("it should generate correct object type with additional props", () => {
+    it("it should generate correct object type with props and additional props", () => {
       assert.deepEqual(
         converter.generateTypeValue({
           type: "object",
+          properties: {
+            type: {
+              type: "string"
+            }
+          },
           additionalProperties: {
-            type: "string"
+            type: "boolean"
           }
         }),
-        `string`
+        `{\n'type'?: string\n} & { [key: string]: boolean }`
       )
     })
 
@@ -141,7 +146,7 @@ describe("TypescriptConverter", () => {
             type: "string"
           }
         }),
-        `{\n'test1'?: string\n} & string`
+        `{\n'test1'?: string\n} & { [key: string]: string }`
       )
     })
 
@@ -151,6 +156,30 @@ describe("TypescriptConverter", () => {
           type: "object"
         }),
         `void`
+      )
+    })
+
+    it("it should generate correct object type with props if type is not defined but properties are defined", () => {
+      assert.deepEqual(
+        converter.generateTypeValue({
+          properties: {
+            key: {
+              type: "string"
+            }
+          }
+        }),
+        `{\n'key'?: string\n}`
+      )
+    })
+
+    it("it should generate correct object type with props if type is not defined but additionalProperties are defined", () => {
+      assert.deepEqual(
+        converter.generateTypeValue({
+          additionalProperties: {
+            type: "string"
+          }
+        }),
+        `{ [key: string]: string }`
       )
     })
 

@@ -77,13 +77,18 @@ describe("TypescriptConverter", function () {
                 required: ["test1"]
             }), "{\n'test1': boolean\n'test2'?: string\n}");
         });
-        it("it should generate correct object type with additional props", function () {
+        it("it should generate correct object type with props and additional props", function () {
             assert.deepEqual(converter.generateTypeValue({
                 type: "object",
+                properties: {
+                    type: {
+                        type: "string"
+                    }
+                },
                 additionalProperties: {
-                    type: "string"
+                    type: "boolean"
                 }
-            }), "string");
+            }), "{\n'type'?: string\n} & { [key: string]: boolean }");
         });
         it("it should generate correct object type with props and additional props", function () {
             assert.deepEqual(converter.generateTypeValue({
@@ -96,12 +101,28 @@ describe("TypescriptConverter", function () {
                 additionalProperties: {
                     type: "string"
                 }
-            }), "{\n'test1'?: string\n} & string");
+            }), "{\n'test1'?: string\n} & { [key: string]: string }");
         });
         it("it should generate correct object type with no props", function () {
             assert.deepEqual(converter.generateTypeValue({
                 type: "object"
             }), "void");
+        });
+        it("it should generate correct object type with props if type is not defined but properties are defined", function () {
+            assert.deepEqual(converter.generateTypeValue({
+                properties: {
+                    key: {
+                        type: "string"
+                    }
+                }
+            }), "{\n'key'?: string\n}");
+        });
+        it("it should generate correct object type with props if type is not defined but additionalProperties are defined", function () {
+            assert.deepEqual(converter.generateTypeValue({
+                additionalProperties: {
+                    type: "string"
+                }
+            }), "{ [key: string]: string }");
         });
         it("it should generate correct intersection type", function () {
             assert.deepEqual(converter.generateTypeValue({
