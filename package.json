@@ -12,8 +12,8 @@
     "test:petstore:json": "swagger-typescript-client-generator bundle PetStore -f ./tests/petstore.json > ./tests/petstore.json.snapshot.ts",
     "test:petstore:yaml": "swagger-typescript-client-generator bundle PetStore -f ./tests/petstore.yaml > ./tests/petstore.yaml.snapshot.ts",
     "format": "yarn run lint:prettier --write",
-    "lint": "yarn lint:prettier && yarn run lint:tslint",
-    "lint:tslint": "tslint -c 'packages/**/*.ts' --format verbose",
+    "lint": "yarn lint:prettier && yarn run lint:eslint",
+    "lint:eslint": "eslint ./packages/ --ext=.ts",
     "lint:prettier": "prettier -l '**/*.{ts,json,md,yml}' .prettierrc"
   },
   "workspaces": [
