@@ -5,7 +5,7 @@ var TypescriptNameNormalizer = /** @class */ (function () {
     }
     TypescriptNameNormalizer.prototype.normalize = function (name) {
         return name
-            .split(/[\/.-]/g)
+            .split(/[/.-]/g)
             .filter(Boolean)
             .map(function (segment) {
             if (segment[0] === "{" && segment[segment.length - 1] === "}") {

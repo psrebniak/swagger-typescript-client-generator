@@ -3,7 +3,7 @@ import { Normalizer } from "./normalizer"
 export class TypescriptNameNormalizer implements Normalizer {
   public normalize(name: string): string {
     return name
-      .split(/[\/.-]/g)
+      .split(/[/.-]/g)
       .filter(Boolean)
       .map(segment => {
         if (segment[0] === "{" && segment[segment.length - 1] === "}") {
