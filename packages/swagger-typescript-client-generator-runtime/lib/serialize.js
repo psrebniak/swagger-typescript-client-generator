@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+// https://stackoverflow.com/questions/1714786/query-string-encoding-of-a-javascript-object/1714899#1714899
 exports.serialize = function (obj, prefix) {
     if (prefix === void 0) { prefix = ""; }
     var str = [];
