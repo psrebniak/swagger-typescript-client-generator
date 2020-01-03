@@ -150,12 +150,12 @@ describe("TypescriptConverter", () => {
       )
     })
 
-    it("it should generate correct object type with no props", () => {
+    it("it should generate correct object type with no properties", () => {
       assert.deepEqual(
         converter.generateTypeValue({
           type: "object"
         }),
-        `void`
+        `{}`
       )
     })
 

@@ -6,6 +6,7 @@ import { ParametersJarFactory } from "./parametersJarFactory";
 export declare const TYPESCRIPT_TYPE_UNDEFINED = "undefined";
 export declare const TYPESCRIPT_TYPE_VOID = "void";
 export declare const TYPESCRIPT_TYPE_ANY = "any";
+export declare const TYPESCRIPT_TYPE_EMPTY_OBJECT = "{}";
 export interface SwaggerToTypescriptConverterSettings {
     allowVoidParameters?: boolean;
 }

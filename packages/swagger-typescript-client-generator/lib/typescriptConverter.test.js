@@ -103,10 +103,10 @@ describe("TypescriptConverter", function () {
                 }
             }), "{\n'test1'?: string\n} & { [key: string]: string }");
         });
-        it("it should generate correct object type with no props", function () {
+        it("it should generate correct object type with no properties", function () {
             assert.deepEqual(converter.generateTypeValue({
                 type: "object"
-            }), "void");
+            }), "{}");
         });
         it("it should generate correct object type with props if type is not defined but properties are defined", function () {
             assert.deepEqual(converter.generateTypeValue({

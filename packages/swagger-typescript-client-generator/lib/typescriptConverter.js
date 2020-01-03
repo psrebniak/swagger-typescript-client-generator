@@ -7,6 +7,7 @@ var typescriptNameNormalizer_1 = require("./typescriptNameNormalizer");
 exports.TYPESCRIPT_TYPE_UNDEFINED = "undefined";
 exports.TYPESCRIPT_TYPE_VOID = "void";
 exports.TYPESCRIPT_TYPE_ANY = "any";
+exports.TYPESCRIPT_TYPE_EMPTY_OBJECT = "{}";
 var PARAMETER_PATH_SUFFIX = "PathParameter";
 var PARAMETERS_QUERY_SUFFIX = "QueryParameters";
 var PARAMETERS_BODY_SUFFIX = "BodyParameters";
@@ -160,7 +161,7 @@ var TypescriptConverter = /** @class */ (function () {
                         " }";
             }
             if (output.trim().length === 0) {
-                return exports.TYPESCRIPT_TYPE_VOID;
+                return exports.TYPESCRIPT_TYPE_EMPTY_OBJECT;
             }
             return output;
         }

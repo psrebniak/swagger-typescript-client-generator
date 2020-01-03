@@ -22,6 +22,7 @@ import { TypescriptNameNormalizer } from "./typescriptNameNormalizer"
 export const TYPESCRIPT_TYPE_UNDEFINED = "undefined"
 export const TYPESCRIPT_TYPE_VOID = "void"
 export const TYPESCRIPT_TYPE_ANY = "any"
+export const TYPESCRIPT_TYPE_EMPTY_OBJECT = "{}"
 
 const PARAMETER_PATH_SUFFIX = "PathParameter"
 const PARAMETERS_QUERY_SUFFIX = "QueryParameters"
@@ -268,7 +269,7 @@ export class TypescriptConverter implements BaseConverter {
       }
 
       if (output.trim().length === 0) {
-        return TYPESCRIPT_TYPE_VOID
+        return TYPESCRIPT_TYPE_EMPTY_OBJECT
       }
       return output
     }
