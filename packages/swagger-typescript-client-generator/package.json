@@ -1,6 +1,6 @@
 {
   "name": "swagger-typescript-client-generator",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Tool to convert swagger 2.0 file to typescript client",
   "main": "lib/index.js",
   "bin": "bin/index.js",
@@ -13,7 +13,7 @@
   "dependencies": {
     "js-yaml": "^3.13.1",
     "prettier": "^1.19.1",
-    "swagger-typescript-client-generator-runtime": "^1.5.1",
+    "swagger-typescript-client-generator-runtime": "^1.5.2",
     "yargs": "^13.2.2"
   },
   "devDependencies": {
