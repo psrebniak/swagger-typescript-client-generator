@@ -88,9 +88,9 @@ var TypescriptConverter = /** @class */ (function () {
             var code = _a[0], response = _a[1];
             return _this.generateTypeValue(response);
         })
-            .join(" | ");
+            .join(" | ") || exports.TYPESCRIPT_TYPE_VOID;
         output += name + " (" + parameters.join(", ") + "): Promise<ApiResponse<" + responseTypes + ">> {\n";
-        output += "let path = '" + path + "'\n";
+        output += (pathParams.length > 0 ? "let" : "const") + " path = '" + path + "'\n";
         output += pathParams
             .map(function (parameter) {
             return "path = path.replace('{" + parameter.name + "}', String(" + parameter.name + PARAMETER_PATH_SUFFIX + "))\n";
