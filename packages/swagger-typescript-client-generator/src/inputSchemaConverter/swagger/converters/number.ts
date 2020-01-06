@@ -10,8 +10,14 @@ export const convertSwaggerSchemaToNumberSchema = (
     type: "number",
     enum: enumerated.length > 0 ? enumerated : undefined,
     description: definition.description,
-    maximum: definition.maximum,
-    minimum: definition.minimum,
+    maximum:
+      typeof definition.maximum !== "undefined"
+        ? Number(definition.maximum)
+        : undefined,
+    minimum:
+      typeof definition.minimum !== "undefined"
+        ? Number(definition.minimum)
+        : undefined,
     default:
       typeof definition.default !== "undefined"
         ? Number(definition.default)

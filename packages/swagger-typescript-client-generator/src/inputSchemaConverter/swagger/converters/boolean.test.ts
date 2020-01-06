@@ -1,6 +1,7 @@
+import { convertSwaggerSchemaToNormalizedSchema } from "./index"
 import * as Swagger from "swagger-schema-official"
 
-export const boolean: Swagger.Schema[] = [
+const testCases: Swagger.Schema[] = [
   {
     type: "boolean",
     description: "type number"
@@ -27,7 +28,7 @@ export const boolean: Swagger.Schema[] = [
   },
   {
     type: "boolean",
-    default: "on" as any,
+    default: "on" as unknown,
     description: "type and string default"
   },
   {
@@ -51,3 +52,14 @@ export const boolean: Swagger.Schema[] = [
     description: "type and mixed enum"
   }
 ]
+
+const type = "boolean"
+
+test.each(testCases.map(item => [item.description, item]))(
+  `converter converts scenario "%s"`,
+  (description, definition) => {
+    const spec = convertSwaggerSchemaToNormalizedSchema(definition as unknown)
+    expect(spec.type).toEqual(type)
+    expect(spec).toMatchSnapshot()
+  }
+)

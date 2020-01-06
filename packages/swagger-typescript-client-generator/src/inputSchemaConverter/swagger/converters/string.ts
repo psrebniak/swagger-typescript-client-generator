@@ -7,7 +7,7 @@ export const convertSwaggerSchemaToStringSchema = (
   const enumerated = (definition.enum || []).map(e => String(e))
   return {
     type: "string",
-    enum: enumerated.length > 0 ? enumerated : undefined,
+    enum: enumerated?.length > 0 ? enumerated : undefined,
     description: definition.description,
     default:
       typeof definition.default !== "undefined"

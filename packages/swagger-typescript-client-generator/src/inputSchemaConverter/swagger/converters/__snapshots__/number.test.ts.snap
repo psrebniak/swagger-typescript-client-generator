@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`converter converts scenario "type and empty enum" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type and empty enum",
+  "enum": undefined,
+  "format": undefined,
+  "maximum": undefined,
+  "minimum": undefined,
+  "type": "number",
+}
+`;
+
+exports[`converter converts scenario "type and format" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type and format",
+  "enum": undefined,
+  "format": "timestamp",
+  "maximum": undefined,
+  "minimum": undefined,
+  "type": "number",
+}
+`;
+
+exports[`converter converts scenario "type and mixed enum" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type and mixed enum",
+  "enum": Array [
+    1,
+    2,
+    3,
+  ],
+  "format": undefined,
+  "maximum": undefined,
+  "minimum": undefined,
+  "type": "number",
+}
+`;
+
+exports[`converter converts scenario "type and numeric default" 1`] = `
+Object {
+  "default": 1,
+  "description": "type and numeric default",
+  "enum": undefined,
+  "format": undefined,
+  "maximum": undefined,
+  "minimum": undefined,
+  "type": "number",
+}
+`;
+
+exports[`converter converts scenario "type and numeric enum" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type and numeric enum",
+  "enum": Array [
+    1,
+    2,
+    3,
+  ],
+  "format": undefined,
+  "maximum": undefined,
+  "minimum": undefined,
+  "type": "number",
+}
+`;
+
+exports[`converter converts scenario "type and numeric maximum" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type and numeric maximum",
+  "enum": undefined,
+  "format": undefined,
+  "maximum": 1,
+  "minimum": undefined,
+  "type": "number",
+}
+`;
+
+exports[`converter converts scenario "type and numeric minimum" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type and numeric minimum",
+  "enum": undefined,
+  "format": undefined,
+  "maximum": undefined,
+  "minimum": 1,
+  "type": "number",
+}
+`;
+
+exports[`converter converts scenario "type and string default" 1`] = `
+Object {
+  "default": 1,
+  "description": "type and string default",
+  "enum": undefined,
+  "format": undefined,
+  "maximum": undefined,
+  "minimum": undefined,
+  "type": "number",
+}
+`;
+
+exports[`converter converts scenario "type and string maximum" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type and string maximum",
+  "enum": undefined,
+  "format": undefined,
+  "maximum": 1,
+  "minimum": undefined,
+  "type": "number",
+}
+`;
+
+exports[`converter converts scenario "type and string minimum" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type and string minimum",
+  "enum": undefined,
+  "format": undefined,
+  "maximum": undefined,
+  "minimum": 1,
+  "type": "number",
+}
+`;
+
+exports[`converter converts scenario "type integer" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type integer",
+  "enum": undefined,
+  "format": undefined,
+  "maximum": undefined,
+  "minimum": undefined,
+  "type": "number",
+}
+`;
+
+exports[`converter converts scenario "type number" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type number",
+  "enum": undefined,
+  "format": undefined,
+  "maximum": undefined,
+  "minimum": undefined,
+  "type": "number",
+}
+`;

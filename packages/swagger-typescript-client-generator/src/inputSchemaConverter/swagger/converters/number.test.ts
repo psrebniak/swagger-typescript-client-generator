@@ -1,6 +1,7 @@
+import { convertSwaggerSchemaToNormalizedSchema } from "./index"
 import * as Swagger from "swagger-schema-official"
 
-export const number: Swagger.Schema[] = [
+const testCases: Swagger.Schema[] = [
   {
     type: "number",
     description: "type number"
@@ -16,7 +17,7 @@ export const number: Swagger.Schema[] = [
   },
   {
     type: "number",
-    minimum: "1" as any,
+    minimum: ("1" as unknown) as number,
     description: "type and string minimum"
   },
   {
@@ -26,7 +27,7 @@ export const number: Swagger.Schema[] = [
   },
   {
     type: "number",
-    maximum: "1" as any,
+    maximum: ("1" as unknown) as number,
     description: "type and string maximum"
   },
   {
@@ -36,7 +37,7 @@ export const number: Swagger.Schema[] = [
   },
   {
     type: "number",
-    default: "1" as any,
+    default: ("1" as unknown) as number,
     description: "type and string default"
   },
   {
@@ -60,3 +61,14 @@ export const number: Swagger.Schema[] = [
     description: "type and mixed enum"
   }
 ]
+
+const type = "number"
+
+test.each(testCases.map(item => [item.description, item]))(
+  `converter converts scenario "%s"`,
+  (description, definition) => {
+    const spec = convertSwaggerSchemaToNormalizedSchema(definition as unknown)
+    expect(spec.type).toEqual(type)
+    expect(spec).toMatchSnapshot()
+  }
+)

@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`converter converts scenario "type with single item" 1`] = `
+Object {
+  "description": "type with single item",
+  "items": Object {
+    "description": undefined,
+    "type": "unknown",
+  },
+  "type": "array",
+}
+`;
+
+exports[`converter converts scenario "type without items" 1`] = `
+Object {
+  "description": "type without items",
+  "items": Object {
+    "type": "unknown",
+  },
+  "type": "array",
+}
+`;

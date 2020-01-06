@@ -1,2 +1,5 @@
-packages/*/lib/**/*.js linguist-generated
-packages/*/lib/**/*.d.ts linguist-generated
+packages/*/lib/*.js -diff
+packages/*/lib/**/*.js -diff
+
+packages/*/lib/*.d.ts -diff
+packages/*/lib/**/*.d.ts -diff

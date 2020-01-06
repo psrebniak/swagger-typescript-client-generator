@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`converter converts scenario "additional fields used" 1`] = `
+Object {
+  "default": undefined,
+  "description": "additional fields used",
+  "enum": Array [
+    "1",
+    "2",
+    "3",
+  ],
+  "type": "string",
+}
+`;
+
+exports[`converter converts scenario "all fields set" 1`] = `
+Object {
+  "default": undefined,
+  "description": "all fields set",
+  "enum": Array [
+    "1",
+    "2",
+    "3",
+  ],
+  "type": "string",
+}
+`;
+
+exports[`converter converts scenario "just type and description" 1`] = `
+Object {
+  "default": undefined,
+  "description": "just type and description",
+  "enum": undefined,
+  "type": "string",
+}
+`;
+
+exports[`converter converts scenario "type and defined empty enum" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type and defined empty enum",
+  "enum": undefined,
+  "type": "string",
+}
+`;
+
+exports[`converter converts scenario "type and format" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type and format",
+  "enum": undefined,
+  "type": "string",
+}
+`;
+
+exports[`converter converts scenario "type and mixed enum" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type and mixed enum",
+  "enum": Array [
+    "true",
+    "2",
+    "3",
+  ],
+  "type": "string",
+}
+`;
+
+exports[`converter converts scenario "type and string enum" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type and string enum",
+  "enum": Array [
+    "1",
+    "2",
+    "3",
+  ],
+  "type": "string",
+}
+`;
+
+exports[`converter converts scenario "type with default value" 1`] = `
+Object {
+  "default": "default value",
+  "description": "type with default value",
+  "enum": undefined,
+  "type": "string",
+}
+`;
+
+exports[`converter converts scenario "type, format and default value" 1`] = `
+Object {
+  "default": "some default value",
+  "description": "type, format and default value",
+  "enum": undefined,
+  "type": "string",
+}
+`;

@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`converter converts scenario "allOf should create intersection" 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "default": undefined,
+      "description": undefined,
+      "enum": undefined,
+      "type": "boolean",
+    },
+    Object {
+      "default": undefined,
+      "description": undefined,
+      "enum": undefined,
+      "format": undefined,
+      "maximum": undefined,
+      "minimum": undefined,
+      "type": "number",
+    },
+  ],
+  "type": "intersection",
+}
+`;

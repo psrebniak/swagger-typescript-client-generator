@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`converter converts scenario "type and boolean enum" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type and boolean enum",
+  "enum": Array [
+    false,
+    true,
+  ],
+  "type": "boolean",
+}
+`;
+
+exports[`converter converts scenario "type and empty enum" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type and empty enum",
+  "enum": undefined,
+  "type": "boolean",
+}
+`;
+
+exports[`converter converts scenario "type and format" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type and format",
+  "enum": undefined,
+  "type": "boolean",
+}
+`;
+
+exports[`converter converts scenario "type and mixed enum" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type and mixed enum",
+  "enum": Array [
+    true,
+    false,
+    false,
+    false,
+  ],
+  "type": "boolean",
+}
+`;
+
+exports[`converter converts scenario "type and negative default" 1`] = `
+Object {
+  "default": false,
+  "description": "type and negative default",
+  "enum": undefined,
+  "type": "boolean",
+}
+`;
+
+exports[`converter converts scenario "type and numeric negative falsy default" 1`] = `
+Object {
+  "default": false,
+  "description": "type and numeric negative falsy default",
+  "enum": undefined,
+  "type": "boolean",
+}
+`;
+
+exports[`converter converts scenario "type and numeric truthy default" 1`] = `
+Object {
+  "default": true,
+  "description": "type and numeric truthy default",
+  "enum": undefined,
+  "type": "boolean",
+}
+`;
+
+exports[`converter converts scenario "type and positive default" 1`] = `
+Object {
+  "default": true,
+  "description": "type and positive default",
+  "enum": undefined,
+  "type": "boolean",
+}
+`;
+
+exports[`converter converts scenario "type and string default" 1`] = `
+Object {
+  "default": true,
+  "description": "type and string default",
+  "enum": undefined,
+  "type": "boolean",
+}
+`;
+
+exports[`converter converts scenario "type number" 1`] = `
+Object {
+  "default": undefined,
+  "description": "type number",
+  "enum": undefined,
+  "type": "boolean",
+}
+`;

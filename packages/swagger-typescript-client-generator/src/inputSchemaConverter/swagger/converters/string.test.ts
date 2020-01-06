@@ -1,6 +1,7 @@
+import { convertSwaggerSchemaToNormalizedSchema } from "./index"
 import * as Swagger from "swagger-schema-official"
 
-export const string: Swagger.Schema[] = [
+const testCases: Swagger.Schema[] = [
   {
     type: "string",
     description: "just type and description"
@@ -53,3 +54,14 @@ export const string: Swagger.Schema[] = [
     uniqueItems: true
   }
 ]
+
+const type = "string"
+
+test.each(testCases.map(item => [item.description, item]))(
+  `converter converts scenario "%s"`,
+  (description, definition) => {
+    const spec = convertSwaggerSchemaToNormalizedSchema(definition as unknown)
+    expect(spec.type).toEqual(type)
+    expect(spec).toMatchSnapshot()
+  }
+)
