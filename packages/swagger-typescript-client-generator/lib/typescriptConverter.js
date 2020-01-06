@@ -196,4 +196,3 @@ var TypescriptConverter = /** @class */ (function () {
     return TypescriptConverter;
 }());
 exports.TypescriptConverter = TypescriptConverter;
-//# sourceMappingURL=typescriptConverter.js.map

@@ -9,4 +9,3 @@ exports.yamlReader = function (options) {
     });
     return yaml.safeLoad(content);
 };
-//# sourceMappingURL=yamlReader.js.map

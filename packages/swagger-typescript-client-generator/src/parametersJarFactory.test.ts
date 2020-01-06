@@ -1,4 +1,3 @@
-import * as assert from "assert"
 import { Operation, Spec } from "swagger-schema-official"
 import { ParametersJarFactory } from "./parametersJarFactory"
 
@@ -80,38 +79,31 @@ const refSwagger: Spec = {
 }
 
 describe("ParametersJarFactory", () => {
-  it("it should not throw if operation security is not defined", () => {
+  test("it should not throw if operation security is not defined", () => {
     const factory = new ParametersJarFactory(refSwagger)
     const operation: Operation = refSwagger.paths["/persons"].get
 
-    assert.doesNotThrow(
-      () => factory.createFromOperation(operation),
-      "should not throw"
-    )
+    expect(factory.createFromOperation(operation)).toBeTruthy()
   })
 
-  it("it should include security if is defined", () => {
+  test("it should include security if is defined", () => {
     const factory = new ParametersJarFactory(protectedSwagger)
     const operation: Operation = protectedSwagger.paths["/project"].get
 
-    assert.deepEqual(
-      factory.createFromOperation(operation),
-      {
-        pathParams: [],
-        queryParams: [
-          {
-            name: "token",
-            description: "Auth token",
-            required: false,
-            type: "string",
-            in: "query"
-          }
-        ],
-        bodyParams: [],
-        formDataParams: [],
-        headerParams: [{ type: "apiKey", in: "header" }]
-      },
-      "should contain auth token"
-    )
+    expect(factory.createFromOperation(operation)).toStrictEqual({
+      pathParams: [],
+      queryParams: [
+        {
+          name: "token",
+          description: "Auth token",
+          required: false,
+          type: "string",
+          in: "query"
+        }
+      ],
+      bodyParams: [],
+      formDataParams: [],
+      headerParams: [{ type: "apiKey", in: "header" }]
+    })
   })
 })

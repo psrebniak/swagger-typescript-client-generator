@@ -12,4 +12,3 @@ exports.DEFINITION_TYPE_INTEGER = "integer";
 exports.DEFINITION_TYPE_BOOLEAN = "boolean";
 exports.DEFINITION_TYPE_OBJECT = "object";
 exports.DEFINITION_TYPE_ARRAY = "array";
-//# sourceMappingURL=swaggerTypes.js.map

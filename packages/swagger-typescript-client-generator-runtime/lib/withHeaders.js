@@ -9,4 +9,3 @@ exports.withHeaders = function (requestFactory, overrideHeaders) {
         return requestFactory(path, query, body, formData, headersObject, method, configuration);
     };
 };
-//# sourceMappingURL=withHeaders.js.map

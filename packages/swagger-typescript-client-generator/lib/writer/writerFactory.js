@@ -5,4 +5,3 @@ var stdoutWriter_1 = require("./stdoutWriter");
 exports.writerFactory = function (options) {
     return prettierWriterComposite_1.prettierWriterComposite(stdoutWriter_1.stdoutWriter);
 };
-//# sourceMappingURL=writerFactory.js.map

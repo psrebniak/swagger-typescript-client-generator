@@ -2,12 +2,10 @@
   "name": "swagger-typescript-client-generator",
   "private": true,
   "scripts": {
-    "clean": "rimraf ./packages/*/lib",
-    "prebuild": "yarn clean",
-    "build": "tsc --build --preserveWatchOutput",
+    "build": "lerna exec --stream -- yarn build",
     "pretest": "yarn build",
-    "test": "yarn lint && yarn test:mocha && yarn test:petstore",
-    "test:mocha": "mocha packages/**/*.test.js",
+    "test": "yarn test:lib && yarn test:petstore",
+    "test:lib": "lerna exec --stream -- yarn test",
     "test:petstore": "yarn test:petstore:json && yarn test:petstore:yaml",
     "test:petstore:json": "swagger-typescript-client-generator bundle PetStore -f ./tests/petstore.json > ./tests/petstore.json.snapshot.ts",
     "test:petstore:yaml": "swagger-typescript-client-generator bundle PetStore -f ./tests/petstore.yaml > ./tests/petstore.yaml.snapshot.ts",
@@ -24,7 +22,6 @@
     "lerna": "^3.17.0"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.7",
     "@types/node": "8",
     "@typescript-eslint/eslint-plugin": "^2.6.1",
     "@typescript-eslint/parser": "^2.6.1",
@@ -34,9 +31,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "husky": "^3.0.9",
     "lint-staged": "^9.4.2",
-    "mocha": "^6.2.2",
     "prettier": "^1.19.1",
-    "rimraf": "^3.0.0",
     "typescript": "^3.7.2"
   },
   "config": {

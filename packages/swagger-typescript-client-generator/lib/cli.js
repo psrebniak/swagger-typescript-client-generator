@@ -47,4 +47,3 @@ if (process.env.DEBUG) {
     // tslint:disable-next-line no-console
     console.log(args);
 }
-//# sourceMappingURL=cli.js.map
