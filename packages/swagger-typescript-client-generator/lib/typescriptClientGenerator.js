@@ -51,4 +51,3 @@ var TypescriptClientGenerator = /** @class */ (function () {
     return TypescriptClientGenerator;
 }());
 exports.TypescriptClientGenerator = TypescriptClientGenerator;
-//# sourceMappingURL=typescriptClientGenerator.js.map

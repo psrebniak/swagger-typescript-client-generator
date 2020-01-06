@@ -30,4 +30,3 @@ var ParametersArrayToSchemaConverter = /** @class */ (function () {
     return ParametersArrayToSchemaConverter;
 }());
 exports.ParametersArrayToSchemaConverter = ParametersArrayToSchemaConverter;
-//# sourceMappingURL=parameterArrayToSchemaConverter.js.map

@@ -14,4 +14,3 @@ exports.readerFactory = function (options) {
     }
     throw new Error("cannot create reader for " + options.file + ". Supported formats: json");
 };
-//# sourceMappingURL=readerFactory.js.map

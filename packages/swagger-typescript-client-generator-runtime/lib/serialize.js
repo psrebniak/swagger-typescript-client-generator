@@ -16,4 +16,3 @@ exports.serialize = function (obj, prefix) {
     }
     return str.join("&");
 };
-//# sourceMappingURL=serialize.js.map

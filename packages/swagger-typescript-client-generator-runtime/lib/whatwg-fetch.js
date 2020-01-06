@@ -32,4 +32,3 @@ exports.WhatWgFetchRequestFactory = function (baseUrl, options) { return functio
     var callback = typeof options.fetch === "function" ? options.fetch : fetch;
     return callback(fullUrl, fetchOptions);
 }; };
-//# sourceMappingURL=whatwg-fetch.js.map

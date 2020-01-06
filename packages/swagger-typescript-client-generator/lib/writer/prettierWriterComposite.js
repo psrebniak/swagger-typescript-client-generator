@@ -6,4 +6,3 @@ exports.prettierWriterComposite = function (writer) { return function (content, 
         parser: "typescript"
     }), options);
 }; };
-//# sourceMappingURL=prettierWriterComposite.js.map

@@ -27,4 +27,3 @@ var TypescriptNameNormalizer = /** @class */ (function () {
     return TypescriptNameNormalizer;
 }());
 exports.TypescriptNameNormalizer = TypescriptNameNormalizer;
-//# sourceMappingURL=typescriptNameNormalizer.js.map

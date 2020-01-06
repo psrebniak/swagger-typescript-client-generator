@@ -12,4 +12,3 @@ exports.clientCommand = function (swagger, options) {
         generator.generateClient(options.name)
     ].join("");
 };
-//# sourceMappingURL=clientCommand.js.map

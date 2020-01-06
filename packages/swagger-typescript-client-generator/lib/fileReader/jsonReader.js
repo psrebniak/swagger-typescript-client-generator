@@ -8,4 +8,3 @@ exports.jsonReader = function (options) {
     });
     return JSON.parse(content);
 };
-//# sourceMappingURL=jsonReader.js.map

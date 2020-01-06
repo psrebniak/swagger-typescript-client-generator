@@ -5,9 +5,19 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
+  "scripts": {
+    "clean": "rimraf ./lib",
+    "prebuild": "yarn clean",
+    "build": "tsc --build",
+    "test": "jest ."
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/psrebniak/swagger-typescript-client-generator.git"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.0",
+    "typescript": "^3.7.2"
   },
   "keywords": [
     "swagger",

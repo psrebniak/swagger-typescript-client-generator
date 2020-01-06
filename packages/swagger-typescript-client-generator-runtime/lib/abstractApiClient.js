@@ -8,4 +8,3 @@ var AbstractApiClient = /** @class */ (function () {
     return AbstractApiClient;
 }());
 exports.AbstractApiClient = AbstractApiClient;
-//# sourceMappingURL=abstractApiClient.js.map

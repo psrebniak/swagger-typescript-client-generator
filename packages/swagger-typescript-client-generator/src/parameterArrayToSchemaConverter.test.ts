@@ -1,23 +1,21 @@
-import * as assert from "assert"
-import { throws } from "assert"
 import { Parameter, Schema } from "swagger-schema-official"
 import { ParametersArrayToSchemaConverter } from "./parameterArrayToSchemaConverter"
 
 describe("ParametersArrayToSchemaConverter", () => {
   describe("convertToObject", () => {
-    it("it should throw exception on falsy values", () => {
+    test("it should throw exception on falsy values", () => {
       const converter = new ParametersArrayToSchemaConverter()
 
-      throws(() => {
+      expect(() => {
         converter.convertToObject(null)
-      }, "invalid argument exception")
+      }).toThrow("invalid argument")
 
-      throws(() => {
+      expect(() => {
         converter.convertToObject(undefined)
-      }, "invalid argument exception")
+      }).toThrow("invalid argument")
     })
 
-    it("it should return Schema#Object", () => {
+    test("it should return Schema#Object", () => {
       const converter = new ParametersArrayToSchemaConverter()
 
       const expected: Schema = {
@@ -26,14 +24,10 @@ describe("ParametersArrayToSchemaConverter", () => {
         properties: {}
       }
 
-      assert.deepEqual(
-        converter.convertToObject([]),
-        expected,
-        "should return Schema with type object"
-      )
+      expect(converter.convertToObject([])).toStrictEqual(expected)
     })
 
-    it("it should have properties", () => {
+    test("it should have properties", () => {
       const converter = new ParametersArrayToSchemaConverter()
 
       const expected: Schema = {
@@ -66,14 +60,10 @@ describe("ParametersArrayToSchemaConverter", () => {
         }
       ]
 
-      assert.deepEqual(
-        converter.convertToObject(parameters),
-        expected,
-        "should return Schema with properties"
-      )
+      expect(converter.convertToObject(parameters)).toStrictEqual(expected)
     })
 
-    it("it should have properties", () => {
+    test("it should have properties", () => {
       const converter = new ParametersArrayToSchemaConverter()
 
       const expected: Schema = {
@@ -108,42 +98,34 @@ describe("ParametersArrayToSchemaConverter", () => {
         }
       ]
 
-      assert.deepEqual(
-        converter.convertToObject(parameters),
-        expected,
-        "should return Schema with required property"
-      )
+      expect(converter.convertToObject(parameters)).toStrictEqual(expected)
     })
   })
 
   describe("convertToUnion", () => {
-    it("it should throw exception on falsy values", () => {
+    test("it should throw exception on falsy values", () => {
       const converter = new ParametersArrayToSchemaConverter()
 
-      throws(() => {
+      expect(() => {
         converter.convertToUnion(null)
-      }, "invalid argument exception")
+      }).toThrow("invalid argument")
 
-      throws(() => {
+      expect(() => {
         converter.convertToUnion(undefined)
-      }, "invalid argument exception")
+      }).toThrow("invalid argument")
     })
 
-    it("it should return Schema#Object", () => {
+    test("it should return Schema#Object", () => {
       const converter = new ParametersArrayToSchemaConverter()
 
       const expected: Schema = {
         allOf: []
       }
 
-      assert.deepEqual(
-        converter.convertToUnion([]),
-        expected,
-        "should return Schema with type object"
-      )
+      expect(converter.convertToUnion([])).toStrictEqual(expected)
     })
 
-    it("it should have properties", () => {
+    test("it should have properties", () => {
       const converter = new ParametersArrayToSchemaConverter()
 
       const expected: Schema = {
@@ -174,11 +156,7 @@ describe("ParametersArrayToSchemaConverter", () => {
         }
       ]
 
-      assert.deepEqual(
-        converter.convertToUnion(parameters),
-        expected,
-        "should return Schema with properties"
-      )
+      expect(converter.convertToUnion(parameters)).toStrictEqual(expected)
     })
   })
 })
