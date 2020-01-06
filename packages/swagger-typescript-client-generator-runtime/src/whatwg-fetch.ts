@@ -1,5 +1,5 @@
 import { RequestFactoryType } from "./index"
-import * as querystring from "querystring"
+import { serialize } from "./serialize"
 
 export type WhatWgFetchFunctionType = (
   input: RequestInfo,
@@ -50,7 +50,7 @@ export const WhatWgFetchRequestFactory = (
     baseUrl,
     path,
     hasQuery ? (path.includes("?") ? "&" : "?") : "",
-    hasQuery ? querystring.stringify(query) : ""
+    hasQuery ? serialize(query) : ""
   ].join("")
 
   const callback: WhatWgFetchFunctionType =

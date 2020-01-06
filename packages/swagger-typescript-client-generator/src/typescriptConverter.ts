@@ -22,6 +22,7 @@ import { TypescriptNameNormalizer } from "./typescriptNameNormalizer"
 export const TYPESCRIPT_TYPE_UNDEFINED = "undefined"
 export const TYPESCRIPT_TYPE_VOID = "void"
 export const TYPESCRIPT_TYPE_ANY = "any"
+export const TYPESCRIPT_TYPE_EMPTY_OBJECT = "{}"
 
 const PARAMETER_PATH_SUFFIX = "PathParameter"
 const PARAMETERS_QUERY_SUFFIX = "QueryParameters"
@@ -162,16 +163,17 @@ export class TypescriptConverter implements BaseConverter {
       args.push(TYPESCRIPT_TYPE_UNDEFINED)
     }
 
-    const responseTypes = Object.entries(operation.responses || {})
-      .map(([code, response]) => {
-        return this.generateTypeValue(response)
-      })
-      .join(" | ")
+    const responseTypes =
+      Object.entries(operation.responses || {})
+        .map(([code, response]) => {
+          return this.generateTypeValue(response)
+        })
+        .join(" | ") || TYPESCRIPT_TYPE_VOID
 
     output += `${name} (${parameters.join(
       ", "
     )}): Promise<ApiResponse<${responseTypes}>> {\n`
-    output += `let path = '${path}'\n`
+    output += `${pathParams.length > 0 ? "let" : "const"} path = '${path}'\n`
 
     output += pathParams
       .map(parameter => {
@@ -227,44 +229,56 @@ export class TypescriptConverter implements BaseConverter {
       case DEFINITION_TYPE_ARRAY: {
         return `Array<${this.generateTypeValue(definition.items as Schema)}>`
       }
-      case DEFINITION_TYPE_OBJECT: {
-        let output = ""
+    }
 
-        const hasProperties =
-          definition.properties && Object.keys(definition.properties).length > 0
-        const hasAdditionalProperties = Boolean(definition.additionalProperties)
+    if (
+      definition.type === DEFINITION_TYPE_OBJECT ||
+      (!definition.type &&
+        (definition.allOf ||
+          definition.properties ||
+          definition.additionalProperties))
+    ) {
+      let output = ""
 
+      const hasProperties =
+        definition.properties && Object.keys(definition.properties).length > 0
+
+      if (hasProperties) {
+        output += "{\n"
+        output += Object.entries(definition.properties)
+          .map(([name, def]) => {
+            const isRequired = (definition.required || []).indexOf(name)
+            return `'${name}'${isRequired ? "?" : ""}: ${this.generateTypeValue(
+              def
+            )}`
+          })
+          .join("\n")
+        output += "\n}"
+      }
+
+      if (
+        definition.additionalProperties &&
+        typeof definition.additionalProperties === "object"
+      ) {
         if (hasProperties) {
-          output += "{\n"
-          output += Object.entries(definition.properties)
-            .map(([name, def]) => {
-              const isRequired = (definition.required || []).indexOf(name)
-              return `'${name}'${
-                isRequired ? "?" : ""
-              }: ${this.generateTypeValue(def)}`
-            })
-            .join("\n")
-          output += "\n}"
-        }
-        if (hasProperties && hasAdditionalProperties) {
           output += " & "
         }
-        if (hasAdditionalProperties) {
-          output += this.generateTypeValue(definition.additionalProperties)
-        }
-
-        if (output.trim().length === 0) {
-          return TYPESCRIPT_TYPE_VOID
-        }
-        return output
+        output +=
+          `{ [key: string]: ` +
+          this.generateTypeValue(definition.additionalProperties) +
+          " }"
       }
+
+      if (output.trim().length === 0) {
+        return TYPESCRIPT_TYPE_EMPTY_OBJECT
+      }
+      return output
     }
 
     return TYPESCRIPT_TYPE_ANY
   }
 
   public generateClient(name: string): string {
-    // tslint:disable max-line-length
     let output = `
 
 export interface ApiResponse<T> extends Response {
@@ -275,8 +289,6 @@ export type RequestFactoryType = (path: string, query: any, body: any, formData:
 export class ${name}<T extends {} = {}> {
   constructor(protected configuration: T, protected requestFactory: RequestFactoryType) {}
 `
-    // tslint:enable max-line-length
-
     output += Object.entries(this.swagger.paths)
       .map(([path, methods]) => {
         return Object.entries(methods)

@@ -1,6 +1,7 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
+    "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
     "plugin:prettier/recommended"
@@ -8,5 +9,29 @@
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module"
-  }
+  },
+  "env": {
+    "es6": true
+  },
+  "overrides": [
+    {
+      "files": ["packages/**/*.test.ts"],
+      "env": {
+        "jest": true
+      }
+    },
+    {
+      "files": ["packages/swagger-typescript-client-generator/**/*.ts"],
+      "env": {
+        "browser": false,
+        "node": true
+      }
+    },
+    {
+      "files": ["packages/swagger-typescript-client-generator-runtime/**/*.ts"],
+      "env": {
+        "browser": true
+      }
+    }
+  ]
 }

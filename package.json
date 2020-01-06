@@ -2,19 +2,16 @@
   "name": "swagger-typescript-client-generator",
   "private": true,
   "scripts": {
-    "clean": "rimraf ./packages/*/lib",
-    "prebuild": "yarn clean",
-    "build": "tsc --build --preserveWatchOutput",
+    "build": "lerna exec --stream -- yarn build",
     "pretest": "yarn build",
-    "test": "yarn test:mocha && yarn test:jest && yarn test:petstore",
-    "test:mocha": "yarn build && mocha packages/**/*.test.js",
-    "test:jest": "jest",
+    "test": "yarn test:lib && yarn test:petstore",
+    "test:lib": "lerna exec --stream -- yarn test",
     "test:petstore": "yarn test:petstore:json && yarn test:petstore:yaml",
     "test:petstore:json": "swagger-typescript-client-generator bundle PetStore -f ./tests/petstore.json > ./tests/petstore.json.snapshot.ts",
     "test:petstore:yaml": "swagger-typescript-client-generator bundle PetStore -f ./tests/petstore.yaml > ./tests/petstore.yaml.snapshot.ts",
     "format": "yarn run lint:prettier --write",
-    "lint": "yarn lint:prettier && yarn run lint:tslint",
-    "lint:tslint": "tslint -c 'packages/**/*.ts' --format verbose",
+    "lint": "yarn lint:prettier && yarn run lint:eslint",
+    "lint:eslint": "eslint ./packages/ --ext=.ts",
     "lint:prettier": "prettier -l '**/*.{ts,json,md,yml}' .prettierrc"
   },
   "workspaces": [
@@ -22,26 +19,20 @@
     "packages/swagger-typescript-client-generator-runtime"
   ],
   "dependencies": {
-    "lerna": "^3.17.0"
+    "lerna": "^3.20.2"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.22",
-    "@types/mocha": "^5.2.7",
     "@types/node": "8",
-    "@typescript-eslint/eslint-plugin": "^2.6.1",
-    "@typescript-eslint/parser": "^2.6.1",
+    "@typescript-eslint/eslint-plugin": "^2.14.0",
+    "@typescript-eslint/parser": "^2.14.0",
     "commit-message-validator": "^0.1.11",
-    "eslint": "^6.6.0",
-    "eslint-config-prettier": "^6.5.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "husky": "^3.0.9",
-    "jest": "^24.9.0",
-    "lint-staged": "^9.4.2",
-    "mocha": "^6.2.2",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
     "prettier": "^1.19.1",
-    "rimraf": "^3.0.0",
-    "ts-jest": "^24.1.0",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.4"
   },
   "config": {
     "commit-message-validator": {

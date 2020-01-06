@@ -1,22 +1,22 @@
 export type Pet = {
-  id: number
-  name?: string
-  tag?: string
-}
+  id: number;
+  name?: string;
+  tag?: string;
+};
 
-export type Pets = Array<Pet>
+export type Pets = Array<Pet>;
 
 export type Error = {
-  code: number
-  message?: string
-}
+  code: number;
+  message?: string;
+};
 
 export type GetPetsQueryParameters = {
-  limit?: number
-}
+  limit?: number;
+};
 
 export interface ApiResponse<T> extends Response {
-  json(): Promise<T>
+  json(): Promise<T>;
 }
 export type RequestFactoryType = (
   path: string,
@@ -26,7 +26,7 @@ export type RequestFactoryType = (
   headers: any,
   method: string,
   configuration: any
-) => Promise<ApiResponse<any>>
+) => Promise<ApiResponse<any>>;
 
 export class PetStore<T extends {} = {}> {
   constructor(
@@ -34,7 +34,7 @@ export class PetStore<T extends {} = {}> {
     protected requestFactory: RequestFactoryType
   ) {}
   GetPets(query: GetPetsQueryParameters): Promise<ApiResponse<Pets | Error>> {
-    const path = "/pets"
+    const path = "/pets";
     return this.requestFactory(
       path,
       query,
@@ -43,11 +43,11 @@ export class PetStore<T extends {} = {}> {
       undefined,
       "GET",
       this.configuration
-    )
+    );
   }
 
   PostPets(): Promise<ApiResponse<any | Error>> {
-    const path = "/pets"
+    const path = "/pets";
     return this.requestFactory(
       path,
       undefined,
@@ -56,14 +56,14 @@ export class PetStore<T extends {} = {}> {
       undefined,
       "POST",
       this.configuration
-    )
+    );
   }
 
   GetPetsByPetId(
     petIdPathParameter: string
   ): Promise<ApiResponse<Pets | Error>> {
-    let path = "/pets/{petId}"
-    path = path.replace("{petId}", String(petIdPathParameter))
+    let path = "/pets/{petId}";
+    path = path.replace("{petId}", String(petIdPathParameter));
     return this.requestFactory(
       path,
       undefined,
@@ -72,6 +72,6 @@ export class PetStore<T extends {} = {}> {
       undefined,
       "GET",
       this.configuration
-    )
+    );
   }
 }

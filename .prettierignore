@@ -1,2 +1,2 @@
 packages/**/*.d.ts
-tests
+tests/*
