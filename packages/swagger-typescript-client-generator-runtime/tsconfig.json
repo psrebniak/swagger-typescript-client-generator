@@ -1,7 +1,10 @@
 {
-  "extends": "../../base.tsconfig.json",
   "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
     "rootDir": "src",
     "outDir": "lib"
-  }
+  },
+  "exclude": ["src/*.test.ts", "src/**/*.test.ts"]
 }

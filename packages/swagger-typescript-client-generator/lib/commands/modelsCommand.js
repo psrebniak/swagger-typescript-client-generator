@@ -8,4 +8,3 @@ exports.modelsCommand = function (swagger, options) {
     }));
     return generator.generateModels();
 };
-//# sourceMappingURL=modelsCommand.js.map

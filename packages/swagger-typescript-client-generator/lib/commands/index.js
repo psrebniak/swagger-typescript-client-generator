@@ -6,4 +6,3 @@ var modelsCommand_1 = require("./modelsCommand");
 exports.modelsCommand = modelsCommand_1.modelsCommand;
 var bundleCommand_1 = require("./bundleCommand");
 exports.bundleCommand = bundleCommand_1.bundleCommand;
-//# sourceMappingURL=index.js.map

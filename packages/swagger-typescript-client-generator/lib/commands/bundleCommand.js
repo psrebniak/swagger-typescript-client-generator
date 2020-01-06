@@ -8,4 +8,3 @@ exports.bundleCommand = function (swagger, options) {
     }));
     return generator.generateSingleFile(options.name);
 };
-//# sourceMappingURL=bundleCommand.js.map

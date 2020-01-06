@@ -163,16 +163,17 @@ export class TypescriptConverter implements BaseConverter {
       args.push(TYPESCRIPT_TYPE_UNDEFINED)
     }
 
-    const responseTypes = Object.entries(operation.responses || {})
-      .map(([code, response]) => {
-        return this.generateTypeValue(response)
-      })
-      .join(" | ")
+    const responseTypes =
+      Object.entries(operation.responses || {})
+        .map(([code, response]) => {
+          return this.generateTypeValue(response)
+        })
+        .join(" | ") || TYPESCRIPT_TYPE_VOID
 
     output += `${name} (${parameters.join(
       ", "
     )}): Promise<ApiResponse<${responseTypes}>> {\n`
-    output += `let path = '${path}'\n`
+    output += `${pathParams.length > 0 ? "let" : "const"} path = '${path}'\n`
 
     output += pathParams
       .map(parameter => {

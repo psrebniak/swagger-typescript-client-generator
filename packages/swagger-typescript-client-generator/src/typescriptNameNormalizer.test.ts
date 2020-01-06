@@ -1,46 +1,34 @@
-import * as assert from "assert"
 import { TypescriptNameNormalizer } from "./typescriptNameNormalizer"
 
 describe("TypescriptNameNormalizer", () => {
-  it("it should return correct values when use dashes", () => {
+  test("it should return correct values when use dashes", () => {
     const normalizer = new TypescriptNameNormalizer()
 
-    assert.deepEqual(
-      normalizer.normalize("get-testing-dashes"),
-      "GetTestingDashes"
-    )
+    expect(normalizer.normalize("get-testing-dashes")).toBe("GetTestingDashes")
   })
 
-  it("it should split words by slash", () => {
+  test("it should split words by slash", () => {
     const normalizer = new TypescriptNameNormalizer()
 
-    assert.deepEqual(
-      normalizer.normalize("get-project/tasks"),
-      "GetProjectTasks"
-    )
+    expect(normalizer.normalize("get-project/tasks")).toBe("GetProjectTasks")
   })
 
-  it("it should replace path params", () => {
+  test("it should replace path params", () => {
     const normalizer = new TypescriptNameNormalizer()
 
-    assert.deepEqual(
-      normalizer.normalize("get-/project/{id}"),
-      "GetProjectById"
-    )
+    expect(normalizer.normalize("get-/project/{id}")).toBe("GetProjectById")
 
-    assert.deepEqual(
-      normalizer.normalize("get-/project/{id}/tasks"),
+    expect(normalizer.normalize("get-/project/{id}/tasks")).toBe(
       "GetProjectByIdTasks"
     )
   })
 
-  it("it ignores last slash", () => {
+  test("it ignores last slash", () => {
     const normalizer = new TypescriptNameNormalizer()
 
-    assert.deepEqual(normalizer.normalize("get/project/"), "GetProject")
+    expect(normalizer.normalize("get/project/")).toBe("GetProject")
 
-    assert.deepEqual(
-      normalizer.normalize("get-/project/{id}/tasks/"),
+    expect(normalizer.normalize("get-/project/{id}/tasks/")).toBe(
       "GetProjectByIdTasks"
     )
   })
