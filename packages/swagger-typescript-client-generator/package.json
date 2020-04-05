@@ -18,20 +18,20 @@
   },
   "dependencies": {
     "js-yaml": "^3.13.1",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.3",
     "swagger-typescript-client-generator-runtime": "^1.5.2",
     "yargs": "^15.1.0"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.25",
+    "@types/jest": "^25.2.1",
     "@types/js-yaml": "^3.12.1",
-    "@types/prettier": "^1.19.0",
+    "@types/prettier": "^2.0.0",
     "@types/swagger-schema-official": "^2.0.15",
-    "@types/yargs": "^13.0.4",
-    "jest": "^24.9.0",
+    "@types/yargs": "^15.0.4",
+    "jest": "^25.2.7",
     "rimraf": "^3.0.0",
     "swagger-schema-official": "latest",
-    "ts-jest": "^24.2.0",
+    "ts-jest": "^25.3.1",
     "typescript": "^3.7.4"
   },
   "keywords": [
