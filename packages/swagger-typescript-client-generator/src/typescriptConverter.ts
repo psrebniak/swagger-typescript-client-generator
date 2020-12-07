@@ -15,7 +15,7 @@ import {
   PARAMETER_TYPE_FORM_DATA,
   PARAMETER_TYPE_HEADER,
   PARAMETER_TYPE_PATH,
-  PARAMETER_TYPE_QUERY
+  PARAMETER_TYPE_QUERY,
 } from "./swaggerTypes"
 import { TypescriptNameNormalizer } from "./typescriptNameNormalizer"
 
@@ -48,7 +48,7 @@ export class TypescriptConverter implements BaseConverter {
     this.settings = Object.assign(
       {},
       {
-        allowVoidParameters: true
+        allowVoidParameters: true,
       },
       settings || {}
     )
@@ -65,7 +65,7 @@ export class TypescriptConverter implements BaseConverter {
       queryParams,
       bodyParams,
       formDataParams,
-      headerParams
+      headerParams,
     } = this.getParametersJarFactory().createFromOperation(operation)
 
     const parameterTypes: string[] = []
@@ -113,12 +113,12 @@ export class TypescriptConverter implements BaseConverter {
       queryParams,
       bodyParams,
       formDataParams,
-      headerParams
+      headerParams,
     } = this.getParametersJarFactory().createFromOperation(operation)
 
     let output = ""
 
-    const parameters: string[] = pathParams.map(parameter => {
+    const parameters: string[] = pathParams.map((parameter) => {
       return `${
         parameter.name
       }${PARAMETER_PATH_SUFFIX}: ${this.generateTypeValue(
@@ -176,7 +176,7 @@ export class TypescriptConverter implements BaseConverter {
     output += `${pathParams.length > 0 ? "let" : "const"} path = '${path}'\n`
 
     output += pathParams
-      .map(parameter => {
+      .map((parameter) => {
         return `path = path.replace('{${parameter.name}}', String(${parameter.name}${PARAMETER_PATH_SUFFIX}))\n`
       })
       .join("\n")
@@ -209,7 +209,7 @@ export class TypescriptConverter implements BaseConverter {
     if (Array.isArray(definition.allOf) && definition.allOf.length > 0) {
       return (
         definition.allOf
-          .map(schema => this.generateTypeValue(schema))
+          .map((schema) => this.generateTypeValue(schema))
           .join(" & ") || TYPESCRIPT_TYPE_VOID
       )
     }
@@ -287,7 +287,16 @@ export interface ApiResponse<T> extends Response {
 export type RequestFactoryType = (path: string, query: any, body: any, formData: any, headers: any, method: string, configuration: any) => Promise<ApiResponse<any>>
 
 export class ${name}<T extends {} = {}> {
-  constructor(protected configuration: T, protected requestFactory: RequestFactoryType) {}
+
+  protected configuration: T;
+
+  protected requestFactory: RequestFactoryType;
+
+  constructor(configuration: T, requestFactory: RequestFactoryType) {
+    this.configuration = configuration
+    this.requestFactory = requestFactory
+  }
+
 `
     output += Object.entries(this.swagger.paths)
       .map(([path, methods]) => {

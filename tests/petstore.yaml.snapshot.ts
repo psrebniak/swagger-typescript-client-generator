@@ -29,10 +29,15 @@ export type RequestFactoryType = (
 ) => Promise<ApiResponse<any>>;
 
 export class PetStore<T extends {} = {}> {
-  constructor(
-    protected configuration: T,
-    protected requestFactory: RequestFactoryType
-  ) {}
+  protected configuration: T;
+
+  protected requestFactory: RequestFactoryType;
+
+  constructor(configuration: T, requestFactory: RequestFactoryType) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory;
+  }
+
   GetPets(query: GetPetsQueryParameters): Promise<ApiResponse<Pets | Error>> {
     const path = "/pets";
     return this.requestFactory(
