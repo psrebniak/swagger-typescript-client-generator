@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.WhatWgFetchRequestFactory = void 0;
 var serialize_1 = require("./serialize");
 exports.WhatWgFetchRequestFactory = function (baseUrl, options) { return function (path, query, body, formData, headers, method, configuration) {
     var headersObject = new Headers(options.requestInit.headers || {});

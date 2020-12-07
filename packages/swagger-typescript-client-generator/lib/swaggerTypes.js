@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DEFINITION_TYPE_ARRAY = exports.DEFINITION_TYPE_OBJECT = exports.DEFINITION_TYPE_BOOLEAN = exports.DEFINITION_TYPE_INTEGER = exports.DEFINITION_TYPE_NUMBER = exports.DEFINITION_TYPE_STRING = exports.DEFINITION_TYPE_ENUM = exports.PARAMETER_TYPE_HEADER = exports.PARAMETER_TYPE_QUERY = exports.PARAMETER_TYPE_FORM_DATA = exports.PARAMETER_TYPE_BODY = exports.PARAMETER_TYPE_PATH = void 0;
 exports.PARAMETER_TYPE_PATH = "path";
 exports.PARAMETER_TYPE_BODY = "body";
 exports.PARAMETER_TYPE_FORM_DATA = "formData";

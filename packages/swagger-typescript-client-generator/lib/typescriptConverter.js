@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.TypescriptConverter = exports.TYPESCRIPT_TYPE_EMPTY_OBJECT = exports.TYPESCRIPT_TYPE_ANY = exports.TYPESCRIPT_TYPE_VOID = exports.TYPESCRIPT_TYPE_UNDEFINED = void 0;
 var parameterArrayToSchemaConverter_1 = require("./parameterArrayToSchemaConverter");
 var parametersJarFactory_1 = require("./parametersJarFactory");
 var swaggerTypes_1 = require("./swaggerTypes");
@@ -21,7 +22,7 @@ var TypescriptConverter = /** @class */ (function () {
         this.parametersJarFactory = new parametersJarFactory_1.ParametersJarFactory(this.swagger);
         this.parametersArrayToSchemaConverter = new parameterArrayToSchemaConverter_1.ParametersArrayToSchemaConverter();
         this.settings = Object.assign({}, {
-            allowVoidParameters: true
+            allowVoidParameters: true,
         }, settings || {});
     }
     TypescriptConverter.prototype.generateParameterTypesForOperation = function (path, method, operation) {

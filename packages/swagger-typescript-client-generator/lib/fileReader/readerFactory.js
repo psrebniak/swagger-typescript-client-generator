@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.readerFactory = void 0;
 var jsonReader_1 = require("./jsonReader");
 var yamlReader_1 = require("./yamlReader");
 exports.readerFactory = function (options) {

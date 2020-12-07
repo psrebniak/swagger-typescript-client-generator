@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.clientCommand = void 0;
 var typescriptClientGenerator_1 = require("../typescriptClientGenerator");
 var typescriptConverter_1 = require("../typescriptConverter");
 exports.clientCommand = function (swagger, options) {

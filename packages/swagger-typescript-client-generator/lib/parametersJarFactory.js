@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ParametersJarFactory = void 0;
 var swaggerTypes_1 = require("./swaggerTypes");
 var ParametersJarFactory = /** @class */ (function () {
     function ParametersJarFactory(swagger) {
