@@ -5,7 +5,7 @@ var fs = require("fs");
 exports.jsonReader = function (options) {
     var content = fs.readFileSync(options.file, {
         encoding: "UTF-8",
-        flag: "r"
+        flag: "r",
     });
     return JSON.parse(content);
 };
