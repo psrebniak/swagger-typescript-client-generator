@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.TypescriptNameNormalizer = void 0;
 var TypescriptNameNormalizer = /** @class */ (function () {
     function TypescriptNameNormalizer() {
     }

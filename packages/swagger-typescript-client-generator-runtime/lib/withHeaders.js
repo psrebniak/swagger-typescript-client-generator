@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.withHeaders = void 0;
 exports.withHeaders = function (requestFactory, overrideHeaders) {
     return function (path, query, body, formData, headers, method, configuration) {
         var headersObject = new Headers(headers || {});

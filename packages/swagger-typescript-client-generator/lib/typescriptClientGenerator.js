@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.TypescriptClientGenerator = void 0;
 var TypescriptClientGenerator = /** @class */ (function () {
     function TypescriptClientGenerator(swagger, converter) {
         this.swagger = swagger;

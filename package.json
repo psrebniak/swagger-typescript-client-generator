@@ -2,6 +2,7 @@
   "name": "swagger-typescript-client-generator",
   "private": true,
   "scripts": {
+    "clean": "lerna exec --stream -- yarn clean",
     "build": "lerna exec --stream -- yarn build",
     "pretest": "yarn build",
     "test": "yarn test:lib && yarn test:petstore",

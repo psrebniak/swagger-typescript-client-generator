@@ -7,7 +7,7 @@ import * as yaml from "js-yaml"
 export const yamlReader: FileReader = (options: FileReaderOptions): Spec => {
   const content = fs.readFileSync(options.file, {
     encoding: "UTF-8",
-    flag: "r"
+    flag: "r",
   })
-  return yaml.safeLoad(content)
+  return (yaml.safeLoad(content) as unknown) as Spec
 }
