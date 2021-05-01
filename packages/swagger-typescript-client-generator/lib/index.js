@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.TypescriptClientGenerator = exports.TypescriptConverter = void 0;
 var typescriptConverter_1 = require("./typescriptConverter");
 Object.defineProperty(exports, "TypescriptConverter", { enumerable: true, get: function () { return typescriptConverter_1.TypescriptConverter; } });
 var typescriptClientGenerator_1 = require("./typescriptClientGenerator");

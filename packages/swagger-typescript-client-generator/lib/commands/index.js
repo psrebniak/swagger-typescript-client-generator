@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.bundleCommand = exports.modelsCommand = exports.clientCommand = void 0;
 var clientCommand_1 = require("./clientCommand");
 Object.defineProperty(exports, "clientCommand", { enumerable: true, get: function () { return clientCommand_1.clientCommand; } });
 var modelsCommand_1 = require("./modelsCommand");

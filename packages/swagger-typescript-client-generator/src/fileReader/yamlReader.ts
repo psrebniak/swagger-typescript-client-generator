@@ -9,5 +9,5 @@ export const yamlReader: FileReader = (options: FileReaderOptions): Spec => {
     encoding: "utf-8",
     flag: "r",
   })
-  return (yaml.safeLoad(content) as unknown) as Spec
+  return (yaml.load(content) as unknown) as Spec
 }

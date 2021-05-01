@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.serialize = void 0;
 // https://stackoverflow.com/questions/1714786/query-string-encoding-of-a-javascript-object/1714899#1714899
-exports.serialize = function (obj, prefix) {
+var serialize = function (obj, prefix) {
     if (prefix === void 0) { prefix = ""; }
     var str = [];
     var p;
@@ -17,3 +17,4 @@ exports.serialize = function (obj, prefix) {
     }
     return str.join("&");
 };
+exports.serialize = serialize;

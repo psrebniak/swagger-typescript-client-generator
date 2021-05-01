@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.readerFactory = void 0;
 var jsonReader_1 = require("./jsonReader");
 var yamlReader_1 = require("./yamlReader");
-exports.readerFactory = function (options) {
+var readerFactory = function (options) {
     if (typeof options.file !== "string") {
         throw new Error("invalid type for file option, string expected");
     }
@@ -15,3 +15,4 @@ exports.readerFactory = function (options) {
     }
     throw new Error("cannot create reader for " + options.file + ". Supported formats: json");
 };
+exports.readerFactory = readerFactory;

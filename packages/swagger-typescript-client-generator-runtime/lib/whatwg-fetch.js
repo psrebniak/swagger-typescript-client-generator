@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WhatWgFetchRequestFactory = void 0;
 var serialize_1 = require("./serialize");
-exports.WhatWgFetchRequestFactory = function (baseUrl, options) { return function (path, query, body, formData, headers, method, configuration) {
+var WhatWgFetchRequestFactory = function (baseUrl, options) { return function (path, query, body, formData, headers, method, configuration) {
     var headersObject = new Headers(options.requestInit.headers || {});
     new Headers(headers).forEach(function (value, key) {
         headersObject.set(key, String(value));
@@ -33,3 +33,4 @@ exports.WhatWgFetchRequestFactory = function (baseUrl, options) { return functio
     var callback = typeof options.fetch === "function" ? options.fetch : fetch;
     return callback(fullUrl, fetchOptions);
 }; };
+exports.WhatWgFetchRequestFactory = WhatWgFetchRequestFactory;
