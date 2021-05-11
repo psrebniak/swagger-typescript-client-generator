@@ -9,5 +9,5 @@
     "packages/swagger-typescript-client-generator",
     "packages/swagger-typescript-client-generator-runtime"
   ],
-  "version": "1.6.0"
+  "version": "1.6.1"
 }
