@@ -23,16 +23,16 @@
     "lerna": "^4.0.0"
   },
   "devDependencies": {
-    "@types/node": "15.0.1",
-    "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.22.0",
+    "@types/node": "15.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
     "commit-message-validator": "^1.0.0",
-    "eslint": "^7.25.0",
+    "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "husky": "^4.2.3",
-    "lint-staged": "^10.5.4",
-    "prettier": "^2.0.3",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.0",
     "typescript": "^4.2.4"
   },
   "config": {
