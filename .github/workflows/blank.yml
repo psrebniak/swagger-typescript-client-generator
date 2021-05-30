@@ -24,21 +24,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: cache node_modules directory
-        uses: actions/cache@v1
-        id: node-cache
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-cache
-          restore-keys: |
-            ${{ runner.os }}-node-cache
-
       - uses: actions/setup-node@v1
         with:
           node-version: 14.x
       - run: yarn install
       - run: yarn test
-      - run: yarn build
-
-
 
