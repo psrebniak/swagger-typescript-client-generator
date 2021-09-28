@@ -23,6 +23,9 @@ var WhatWgFetchRequestFactory = function (baseUrl, options) { return function (p
             return data;
         }, new FormData());
     }
+    else if (formData) {
+        fetchOptions.body = formData;
+    }
     var hasQuery = query && Object.keys(query).length > 0;
     var fullUrl = [
         baseUrl,
