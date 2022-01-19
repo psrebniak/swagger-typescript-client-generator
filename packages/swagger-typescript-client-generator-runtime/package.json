@@ -1,6 +1,6 @@
 {
   "name": "swagger-typescript-client-generator-runtime",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "description": "Runtime modules for swagger-typescript-client-generator",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
