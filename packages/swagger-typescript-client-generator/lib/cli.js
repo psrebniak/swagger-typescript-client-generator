@@ -7,10 +7,10 @@ var readerFactory_1 = require("./fileReader/readerFactory");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 var pkg = require("../package.json");
 var useCommand = function (command) { return function (args) {
-    var reader = readerFactory_1.readerFactory(args);
+    var reader = (0, readerFactory_1.readerFactory)(args);
     var spec = reader(args);
     var output = command(spec, args);
-    var writer = writerFactory_1.writerFactory(args);
+    var writer = (0, writerFactory_1.writerFactory)(args);
     writer(output, args);
 }; };
 var args = yargs

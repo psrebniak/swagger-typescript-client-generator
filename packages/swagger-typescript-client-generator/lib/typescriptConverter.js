@@ -26,7 +26,7 @@ var TypescriptConverter = /** @class */ (function () {
         }, settings || {});
     }
     TypescriptConverter.prototype.generateParameterTypesForOperation = function (path, method, operation) {
-        var name = this.getNormalizer().normalize(method + "-" + path);
+        var name = this.getNormalizer().normalize("".concat(method, "-").concat(path));
         var _a = this.getParametersJarFactory().createFromOperation(operation), queryParams = _a.queryParams, bodyParams = _a.bodyParams, formDataParams = _a.formDataParams, headerParams = _a.headerParams;
         var parameterTypes = [];
         if (this.settings.allowVoidParameters || queryParams.length > 0) {
@@ -49,36 +49,36 @@ var TypescriptConverter = /** @class */ (function () {
     };
     TypescriptConverter.prototype.generateOperation = function (path, method, operation) {
         var _this = this;
-        var name = this.getNormalizer().normalize(method + "-" + path);
+        var name = this.getNormalizer().normalize("".concat(method, "-").concat(path));
         var _a = this.getParametersJarFactory().createFromOperation(operation), pathParams = _a.pathParams, queryParams = _a.queryParams, bodyParams = _a.bodyParams, formDataParams = _a.formDataParams, headerParams = _a.headerParams;
         var output = "";
         var parameters = pathParams.map(function (parameter) {
-            return "" + parameter.name + PARAMETER_PATH_SUFFIX + ": " + _this.generateTypeValue(parameter);
+            return "".concat(parameter.name).concat(PARAMETER_PATH_SUFFIX, ": ").concat(_this.generateTypeValue(parameter));
         });
         var args = [swaggerTypes_1.PARAMETER_TYPE_PATH];
         if (this.settings.allowVoidParameters || queryParams.length > 0) {
-            parameters.push(swaggerTypes_1.PARAMETER_TYPE_QUERY + ": " + name + PARAMETERS_QUERY_SUFFIX);
+            parameters.push("".concat(swaggerTypes_1.PARAMETER_TYPE_QUERY, ": ").concat(name).concat(PARAMETERS_QUERY_SUFFIX));
             args.push(swaggerTypes_1.PARAMETER_TYPE_QUERY);
         }
         else {
             args.push(exports.TYPESCRIPT_TYPE_UNDEFINED);
         }
         if (this.settings.allowVoidParameters || bodyParams.length > 0) {
-            parameters.push(swaggerTypes_1.PARAMETER_TYPE_BODY + ": " + name + PARAMETERS_BODY_SUFFIX);
+            parameters.push("".concat(swaggerTypes_1.PARAMETER_TYPE_BODY, ": ").concat(name).concat(PARAMETERS_BODY_SUFFIX));
             args.push(swaggerTypes_1.PARAMETER_TYPE_BODY);
         }
         else {
             args.push(exports.TYPESCRIPT_TYPE_UNDEFINED);
         }
         if (this.settings.allowVoidParameters || formDataParams.length > 0) {
-            parameters.push(swaggerTypes_1.PARAMETER_TYPE_FORM_DATA + ": " + name + PARAMETERS_FORM_DATA_SUFFIX);
+            parameters.push("".concat(swaggerTypes_1.PARAMETER_TYPE_FORM_DATA, ": ").concat(name).concat(PARAMETERS_FORM_DATA_SUFFIX));
             args.push(swaggerTypes_1.PARAMETER_TYPE_FORM_DATA);
         }
         else {
             args.push(exports.TYPESCRIPT_TYPE_UNDEFINED);
         }
         if (this.settings.allowVoidParameters || headerParams.length > 0) {
-            parameters.push(swaggerTypes_1.PARAMETER_TYPE_HEADER + ": " + name + PARAMETERS_HEADER_SUFFIX);
+            parameters.push("".concat(swaggerTypes_1.PARAMETER_TYPE_HEADER, ": ").concat(name).concat(PARAMETERS_HEADER_SUFFIX));
             args.push(swaggerTypes_1.PARAMETER_TYPE_HEADER);
         }
         else {
@@ -90,19 +90,19 @@ var TypescriptConverter = /** @class */ (function () {
             return _this.generateTypeValue(response);
         })
             .join(" | ") || exports.TYPESCRIPT_TYPE_VOID;
-        output += name + " (" + parameters.join(", ") + "): Promise<ApiResponse<" + responseTypes + ">> {\n";
-        output += (pathParams.length > 0 ? "let" : "const") + " path = '" + path + "'\n";
+        output += "".concat(name, " (").concat(parameters.join(", "), "): Promise<ApiResponse<").concat(responseTypes, ">> {\n");
+        output += "".concat(pathParams.length > 0 ? "let" : "const", " path = '").concat(path, "'\n");
         output += pathParams
             .map(function (parameter) {
-            return "path = path.replace('{" + parameter.name + "}', String(" + parameter.name + PARAMETER_PATH_SUFFIX + "))\n";
+            return "path = path.replace('{".concat(parameter.name, "}', String(").concat(parameter.name).concat(PARAMETER_PATH_SUFFIX, "))\n");
         })
             .join("\n");
-        output += "return this.requestFactory(" + args.join(", ") + ", '" + method.toUpperCase() + "', this.configuration)\n";
+        output += "return this.requestFactory(".concat(args.join(", "), ", '").concat(method.toUpperCase(), "', this.configuration)\n");
         output += "}\n";
         return output;
     };
     TypescriptConverter.prototype.generateType = function (name, definition) {
-        return "export type " + this.getNormalizer().normalize(name) + " = " + this.generateTypeValue(definition) + "\n";
+        return "export type ".concat(this.getNormalizer().normalize(name), " = ").concat(this.generateTypeValue(definition), "\n");
     };
     TypescriptConverter.prototype.generateTypeValue = function (definition) {
         var _this = this;
@@ -130,7 +130,7 @@ var TypescriptConverter = /** @class */ (function () {
                 return swaggerTypes_1.DEFINITION_TYPE_NUMBER;
             }
             case swaggerTypes_1.DEFINITION_TYPE_ARRAY: {
-                return "Array<" + this.generateTypeValue(definition.items) + ">";
+                return "Array<".concat(this.generateTypeValue(definition.items), ">");
             }
         }
         if (definition.type === swaggerTypes_1.DEFINITION_TYPE_OBJECT ||
@@ -146,7 +146,7 @@ var TypescriptConverter = /** @class */ (function () {
                     .map(function (_a) {
                     var name = _a[0], def = _a[1];
                     var isRequired = (definition.required || []).indexOf(name);
-                    return "'" + name + "'" + (isRequired ? "?" : "") + ": " + _this.generateTypeValue(def);
+                    return "'".concat(name, "'").concat(isRequired ? "?" : "", ": ").concat(_this.generateTypeValue(def));
                 })
                     .join("\n");
                 output += "\n}";
@@ -170,7 +170,7 @@ var TypescriptConverter = /** @class */ (function () {
     };
     TypescriptConverter.prototype.generateClient = function (name) {
         var _this = this;
-        var output = "\n\nexport interface ApiResponse<T> extends Response {\n  json (): Promise<T>\n}\nexport type RequestFactoryType = (path: string, query: any, body: any, formData: any, headers: any, method: string, configuration: any) => Promise<ApiResponse<any>>\n\nexport class " + name + "<T extends {} = {}> {\n\n  protected configuration: T;\n\n  protected requestFactory: RequestFactoryType;\n\n  constructor(configuration: T, requestFactory: RequestFactoryType) {\n    this.configuration = configuration\n    this.requestFactory = requestFactory\n  }\n\n";
+        var output = "\n\nexport interface ApiResponse<T> extends Response {\n  json (): Promise<T>\n}\nexport type RequestFactoryType = (path: string, query: any, body: any, formData: any, headers: any, method: string, configuration: any) => Promise<ApiResponse<any>>\n\nexport class ".concat(name, "<T extends {} = {}> {\n\n  protected configuration: T;\n\n  protected requestFactory: RequestFactoryType;\n\n  constructor(configuration: T, requestFactory: RequestFactoryType) {\n    this.configuration = configuration\n    this.requestFactory = requestFactory\n  }\n\n");
         output += Object.entries(this.swagger.paths)
             .map(function (_a) {
             var path = _a[0], methods = _a[1];

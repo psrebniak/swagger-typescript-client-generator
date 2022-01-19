@@ -16,7 +16,7 @@
     "url": "https://github.com/psrebniak/swagger-typescript-client-generator.git"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.23",
+    "@types/jest": "^27.4.0",
     "jest": "^27.0.3",
     "rimraf": "^3.0.0",
     "ts-jest": "^27.0.1",

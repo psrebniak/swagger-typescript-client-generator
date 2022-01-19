@@ -44,7 +44,7 @@ var TypescriptClientGenerator = /** @class */ (function () {
             .concat(Object.keys(this.swagger.definitions || {}))
             .map(function (name) { return _this.converter.getNormalizer().normalize(name); })
             .join(",\n  ");
-        return "import {\n  " + names + " \n} from '" + importPath + "'\n";
+        return "import {\n  ".concat(names, " \n} from '").concat(importPath, "'\n");
     };
     TypescriptClientGenerator.prototype.generateClient = function (clientName) {
         return this.converter.generateClient(clientName);

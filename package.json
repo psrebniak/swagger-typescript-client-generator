@@ -23,15 +23,15 @@
     "lerna": "^4.0.0"
   },
   "devDependencies": {
-    "@types/node": "15.0.2",
-    "@typescript-eslint/eslint-plugin": "^4.25.0",
-    "@typescript-eslint/parser": "^4.25.0",
+    "@types/node": "^16",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
     "commit-message-validator": "^1.0.0",
-    "eslint": "^7.27.0",
+    "eslint": "^8.7.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "husky": "^4.2.3",
-    "lint-staged": "^11.0.0",
+    "lint-staged": "^12.2.1",
     "prettier": "^2.3.0",
     "typescript": "^4.3.2"
   },

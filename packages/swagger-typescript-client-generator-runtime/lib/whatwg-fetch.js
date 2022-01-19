@@ -34,7 +34,7 @@ var WhatWgFetchRequestFactory = function (baseUrl, options) {
             baseUrl,
             path,
             hasQuery ? (path.includes("?") ? "&" : "?") : "",
-            hasQuery ? serialize_1.serialize(query) : "",
+            hasQuery ? (0, serialize_1.serialize)(query) : "",
         ].join("");
         var callback = typeof options.fetch === "function" ? options.fetch : fetch;
         return callback(fullUrl, fetchOptions);

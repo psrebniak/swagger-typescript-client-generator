@@ -13,6 +13,6 @@ var readerFactory = function (options) {
     if (options.file.endsWith(".yml") || options.file.endsWith(".yaml")) {
         return yamlReader_1.yamlReader;
     }
-    throw new Error("cannot create reader for " + options.file + ". Supported formats: json");
+    throw new Error("cannot create reader for ".concat(options.file, ". Supported formats: json"));
 };
 exports.readerFactory = readerFactory;

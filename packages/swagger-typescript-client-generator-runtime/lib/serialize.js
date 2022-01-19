@@ -11,7 +11,7 @@ var serialize = function (obj, prefix) {
             var k = prefix ? prefix + "[" + p + "]" : p;
             var v = obj[p];
             str.push(v !== null && typeof v === "object"
-                ? exports.serialize(v, k)
+                ? (0, exports.serialize)(v, k)
                 : encodeURIComponent(k) + "=" + encodeURIComponent(v));
         }
     }

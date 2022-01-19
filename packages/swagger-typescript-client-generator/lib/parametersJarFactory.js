@@ -30,7 +30,7 @@ var ParametersJarFactory = /** @class */ (function () {
                 var segments = parameter.$ref.split("/");
                 var referred = _this.swagger.parameters[segments.length === 1 ? segments[0] : segments[2]];
                 if (!referred) {
-                    throw new Error("cannot find reference " + parameter.$ref);
+                    throw new Error("cannot find reference ".concat(parameter.$ref));
                 }
                 return referred;
             }
